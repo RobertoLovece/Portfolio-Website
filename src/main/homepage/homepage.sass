@@ -1,0 +1,46 @@
+@use '../../styling/base'
+
+.homepage-grid 
+
+    position: relative
+
+    color: base.$highlight-color
+
+    height: 100vh
+    width: 100%
+
+    display: grid
+    grid-template-columns: 1fr
+    grid-auto-rows: 1fr max-content 1fr
+
+    /* font-family: 'Syncopate';  */
+    // font-size: 9vw
+    font-size: 10vw
+    font-weight: 800
+    letter-spacing: 0.15em
+    line-height: 1em
+    // font-family: vortice-concept, sans-serif
+    font-family: 'Trade Gothic LT W01 Bd CnNo-20'
+
+    // -webkit-text-stroke: 2px base.$highlight-color
+    // -webkit-text-fill-color: transparent
+
+.homepage-name 
+
+    text-align: center
+
+    grid-row: 2/3
+
+    margin: auto
+
+    opacity: 0
+    transition: opacity 5s
+
+
+.homepage-name-enter, .homepage-name-enter-done 
+    transition-timing-function: ease-out
+    opacity: 1
+    transition: opacity 5s
+
+.homepage-bottom
+    grid-row: 3/4

@@ -1,0 +1,45 @@
+
+@use '../styling/base'
+
+.scroll
+
+    position: relative
+    background-color: transparent 
+
+    width: 100%
+    height: 100vh
+
+    // clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%)
+
+.scroll-content
+    
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    grid-auto-rows: 3fr 1fr
+
+    column-gap: 5rem
+
+    width: auto
+    height: 90%
+
+    margin-left: 5rem
+    margin-right: 5rem
+
+.image1
+    background-color: grey
+
+
+.bottom 
+    display: block
+    position: relative
+
+    background-color: transparent 
+
+    margin-top: 5rem
+    padding: 0
+
+    width: 100%
+    height: 300vh
+
+.main
+    height: max-content

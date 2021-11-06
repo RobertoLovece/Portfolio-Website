@@ -4,36 +4,74 @@
 .scroll
 
     position: relative
-    background-color: transparent 
+    background-color: transparent
+
+    overflow: hidden
+    text-align: center
 
     width: 100%
     height: 100vh
 
+    padding-top: 20em
+
     // clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%)
 
 .scroll-content
-    
+
     display: grid
-    grid-template-columns: 1fr 1fr 1fr
-    grid-auto-rows: 3fr 1fr
+
+    grid-template-columns: 1fr 1fr
+    grid-auto-rows: 1fr
 
     column-gap: 5rem
 
     width: auto
-    height: 90%
+    height: 100%
 
-    margin-left: 5rem
-    margin-right: 5rem
+    margin-left: 3em
+    margin-right: 3em
 
-.image1
+.scroll-text
+
+    width: 100%
+    height: 100%
+
+    grid-column: 1/2
+    grid-row: 1/3
+
     background-color: grey
 
+.scroll-img-container
 
-.bottom 
+    width: 100%
+    height: fit-content
+
+    margin: auto
+
+    grid-column: 2/3
+    grid-row: 1/3
+
+    background-color: grey
+
+    overflow: hidden
+
+    justify-content: center
+    align-items: center
+
+    img
+        position: relative
+
+        margin-left: auto
+        margin-right: auto
+        display: block
+
+        // left: -20%
+
+.bottom
     display: block
     position: relative
 
-    background-color: transparent 
+    background-color: transparent
 
     margin-top: 5rem
     padding: 0

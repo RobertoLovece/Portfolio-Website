@@ -19,6 +19,7 @@ import atmosphereFragment from './shader/atmosphereFragment.glsl';
 //
 
 import { BLOOMPARAMS, FILMPARAMS } from './utility/config.js';
+import { initGUI } from './utility/GUI';
 
 //
 
@@ -48,7 +49,7 @@ window.onload = function () {
     var maxHeight = (container.clientHeight || container.offsetHeight) - window.innerHeight;
 
     gsap.to(camera.position, {
-        y: -5,
+        y: -3.2,
         ease: 'none',
         scrollTrigger:
         {
@@ -61,7 +62,7 @@ window.onload = function () {
     })
 
     gsap.to(atmosphere.position, {
-        y: 0.5,
+        y: 0.3,
         ease: 'none',
         scrollTrigger:
         {
@@ -73,7 +74,25 @@ window.onload = function () {
         },
     })
 
+    ScrollTrigger.create({
+
+        trigger: document.getElementById('scroll-content'),
+        // markers: true,
+        start: 'top +20%',
+
+        onEnter: () => {
+            gsap.to(scene.background, new THREE.Color(0x403d39))
+            gsap.to(bloomPass, {threshold: 1})
+        },
+
+        onLeaveBack: () => {
+            gsap.to(scene.background, new THREE.Color(0x000))
+            gsap.to(bloomPass, {threshold: 0})
+        },
+    })
+
     // atmosphere.position.set(0, 0.2, 0);
+    initGUI(bloomPass, filmPass)
 
     animate();
 
@@ -84,6 +103,7 @@ window.onload = function () {
 function initScene() {
 
     scene = new THREE.Scene();
+    scene.background = new THREE.Color( 0x000 )
 
     container = document.getElementById('canvas');
 
@@ -97,7 +117,7 @@ function initScene() {
         1000
     );
 
-    renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
+    renderer = new THREE.WebGLRenderer({ alpha: false, antialias: false });
 
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(width, height);
@@ -157,7 +177,6 @@ function initObjects() {
 
     var geometry = new THREE.SphereGeometry(1, 128, 128);
     var material = new THREE.ShaderMaterial({
-        color: 0x000000,
         vertexShader: eclipseVertex,
         fragmentShader: eclipseFragment,
     });
@@ -198,6 +217,7 @@ function initOrbit() {
     orbit = new THREE.Object3D();
     orbit.rotation.order = "YXZ"; //this is important to keep level, so Z should be the last axis to rotate in order...
     orbit.position.copy(eclipse.position);
+    
     scene.add(orbit);
 
     //offset the camera and add it to the pivot

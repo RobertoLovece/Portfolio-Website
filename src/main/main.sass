@@ -18,6 +18,8 @@
 
 .scroll-content
 
+    position: relative
+
     display: grid
 
     grid-template-columns: 1fr 1fr
@@ -33,6 +35,8 @@
 
 .scroll-text
 
+    position: relative
+
     width: 100%
     height: 100%
 
@@ -41,9 +45,10 @@
 
     background-color: grey
 
-.scroll-img-container
+.scroll-img
 
     width: 100%
+    position: relative
     height: fit-content
 
     margin: auto
@@ -65,7 +70,47 @@
         margin-right: auto
         display: block
 
-        // left: -20%
+.scroll-img-title
+
+    position: relative
+
+    width: 100%
+
+    margin: auto
+
+    grid-column: 2/3
+    grid-row: 1/3
+
+    font-family: 'Trade Gothic LT W01 Bd CnNo-20'
+
+    font-size: 8vw
+    font-weight: 800
+    line-height: 1em
+
+    .img-title
+
+        color: white
+        width: fit-content
+
+        position: absolute
+        left: -2.5rem
+        top: 80%
+
+    .img-number
+
+        color: #d6d6d6a1
+
+        font-size: 4vw
+
+        width: fit-content
+
+        position: absolute
+        top: -1em
+        right: 0.1em
+
+
+        
+
 
 .bottom
     display: block

@@ -92,7 +92,6 @@ window.onload = function () {
     })
 
     // atmosphere.position.set(0, 0.2, 0);
-    initGUI(bloomPass, filmPass)
 
     animate();
 

@@ -3,7 +3,7 @@ import React from 'react';
 import './app.sass';
 
 import { Canvas } from './canvas/canvas.js'
-import { Main } from './main/main.js'
+import Main from './main/main.js'
 
 require('normalize.css/normalize.css');
 

@@ -8,7 +8,7 @@ export function HomePage(props) {
         <div className='homepage-grid' id="homepage">
             <CSSTransition
                 in = { !props.isLoading }
-                timeout = {1000}
+                timeout = {5000}
                 classNames = 'homepage-name'
                 exit = {false}
             >

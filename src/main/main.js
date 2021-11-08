@@ -50,32 +50,34 @@ export default class Main extends React.Component {
     render() {
         return (
             <>
-                <div className="main" id="main">
-                    <HomePage isLoading={this.props.isLoading} />
-                    <div className='scroll' id='scroll'>
-                        <div className='scroll-content' id='scroll-content'>
-                            <div className='scroll-text' />
-                            <div className='scroll-img' id='scroll-img'>
-                                <div className='img-container'>
-                                    <img src={Universe} id='universe-img' alt='Universe' style={this.state.left}
-                                        onLoad={this.onLoad}
-                                    />
-                                </div>
+
+                <HomePage isLoading={this.props.isLoading} />
+                <div className='scroll' id='scroll'>
+                    <div className='scroll-content' id='scroll-content'>
+                        <div className='scroll-text'>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor mollitia laborum dignissimos nisi porro ipsam consequuntur veritatis in tenetur ea.
+                        </div>
+                        <div className='scroll-img' id='scroll-img'>
+                            <div className='img-container'>
+                                <img src={Universe} id='universe-img' alt='Universe' style={this.state.left}
+                                    onLoad={this.onLoad}
+                                />
                             </div>
-                            <div className='scroll-img-title' style={this.state.imgHeight}>
-                                <div className='img-title'>
-                                    Universe
-                                </div>
-                                <div className='img-number'>
-                                    01
-                                </div>
+                        </div>
+                        <div className='scroll-img-title' style={this.state.imgHeight}>
+                            <div className='img-title'>
+                                Universe
+                            </div>
+                            <div className='img-number'>
+                                01
                             </div>
                         </div>
                     </div>
-                    <div className='bottom'>
-
-                    </div>
                 </div>
+                <div className='bottom'>
+
+                </div>
+
             </>
 
         );

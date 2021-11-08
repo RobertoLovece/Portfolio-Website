@@ -1,30 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 import './app.sass';
 
 import { Canvas } from './canvas/canvas.js'
 import Main from './main/main.js'
+import { useWindowSize } from './hooks/hooks.js'
 
 require('normalize.css/normalize.css');
 
-export class App extends React.Component {
+export function App() {
 
-    constructor(props) {
-        super(props);
-        this.state = { isLoading: true }
+    const [isLoading, setLoading] = useState(true);
+
+    const size = useWindowSize();
+    const data = {
+        ease: 0.0,
+        curr: 0,
+        prev: 0,
+        rounded: 0,
     }
 
-    componentDidMount() {
-        this.setState({isLoading: false})
-    }
+    const containerRef = useRef();
 
-    render() {
-        return (
-            <>
-                <Canvas/>
-                <Main isLoading = { this.state.isLoading }/>       
-                {/* <Nav/> */}
-            </>
-        );
-    };
+    // const setBodyHeight = () => {
+    //     document.body.style.height = 
+    //         containerRef.current.getBoundingClientRect().height + 'px';
+    // }
+
+    // useEffect(() => {
+    //     setBodyHeight();
+    // }, [size.height]);
+
+    const smoothScroll = useCallback(() => {
+
+        data.curr = window.scrollY;
+        data.prev += (data.curr - data.prev) * data.ease;
+        data.rounded = Math.round(data.prev * 100) / 100;
+
+        containerRef.current.style.transform = 'translateY(' + -data.rounded + 'px)'
+        requestAnimationFrame(() => smoothScroll());
+
+    }, [data]);
+
+    useEffect(() => {
+        setLoading(false)
+        requestAnimationFrame(() => smoothScroll());
+    }, []);
+
+    return (
+        <>
+            <Canvas />
+            <div className='main' ref={containerRef}>
+                <Main isLoading={isLoading} />
+            </div>
+            {/* <Nav/> */ }
+        </>
+    );
 }

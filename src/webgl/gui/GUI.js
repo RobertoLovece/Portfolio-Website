@@ -1,6 +1,6 @@
 import * as dat from 'three/examples/jsm/libs/dat.gui.module.js';
 
-import { BLOOMPARAMS, FILMPARAMS } from './config.js';
+import { BLOOMPARAMS, FILMPARAMS } from '../config.js';
 
 export function initGUI(bloomPass, filmPass) {
 

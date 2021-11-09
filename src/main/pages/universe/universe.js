@@ -1,11 +1,10 @@
 import React from 'react';
 
-import './main.sass';
+import './universe.sass';
 
-import { HomePage } from './pages/homepage/homepage.js'
-import Universe from './pages/universe/universe';
+import UniverseImg from './img/universe.png';
 
-export default class Main extends React.Component {
+export default class Universe extends React.Component {
 
     constructor(props) {
         super(props);
@@ -49,19 +48,26 @@ export default class Main extends React.Component {
 
     render() {
         return (
-            <>
-
-                <HomePage isLoading={this.props.isLoading} />
-                <div className='universe' id='universe'>
-                    <Universe/>
+            <div className='universe-content' id='universe-content'>
+                <div className='universe-text'>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor mollitia laborum dignissimos nisi porro ipsam consequuntur veritatis in tenetur ea.
                 </div>
-                <div className='bottom'>
-
+                <div className='scroll-img' id='scroll-img'>
+                    <div className='img-container'>
+                        <img src={UniverseImg} id='universe-img' alt='Universe' style={this.state.left}
+                            onLoad={this.onLoad}
+                        />
+                    </div>
                 </div>
-
-            </>
-
+                <div className='scroll-img-title' style={this.state.imgHeight}>
+                    <div className='img-title'>
+                        Universe
+                    </div>
+                    <div className='img-number'>
+                        01
+                    </div>
+                </div>
+            </div>
         );
     }
-
 }

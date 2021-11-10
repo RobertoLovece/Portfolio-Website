@@ -1,7 +1,10 @@
 import React from 'react';
+import { Color } from 'three';
+
+import { gsap, ScrollTrigger } from 'gsap/all';
+gsap.registerPlugin(ScrollTrigger);
 
 import './universe.sass';
-
 import UniverseImg from './img/universe.png';
 
 export default class Universe extends React.Component {
@@ -41,6 +44,25 @@ export default class Universe extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+ 
+        if (!this.props.isLoading) {
+            ScrollTrigger.create({
+                trigger: document.getElementById('universe-content'),
+                // markers: true,
+                start: 'top +20%',
+        
+                onEnter: () => {
+                    gsap.to(this.props.scene.background, new Color(0x403d39))
+                    gsap.to(this.props.bloomPass, { threshold: 1 })
+                },
+        
+                onLeaveBack: () => {
+                    gsap.to(this.props.scene.background, new Color(0x000))
+                    gsap.to(this.props.bloomPass, { threshold: 0 })
+                },
+            })
+        }
+
         if (prevState.imgWidth !== this.state.imgWidth) {
             this.updateOffset();
         }
@@ -55,7 +77,7 @@ export default class Universe extends React.Component {
                 <div className='scroll-img' id='scroll-img'>
                     <div className='img-container'>
                         <img src={UniverseImg} id='universe-img' alt='Universe' style={this.state.left}
-                            onLoad={this.onLoad}
+                            onLoad={ this.onLoad }
                         />
                     </div>
                 </div>

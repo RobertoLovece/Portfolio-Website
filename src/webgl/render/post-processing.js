@@ -9,7 +9,7 @@ import { FilmPass } from 'three/examples/jsm/postprocessing/FilmPass.js';
 
 //
 
-import { BLOOMPARAMS, FILMPARAMS } from './config.js';
+import { BLOOMPARAMS, FILMPARAMS } from '../config.js';
 
 //
 

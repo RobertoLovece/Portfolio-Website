@@ -13,9 +13,10 @@ export default class Universe extends React.Component {
         super(props);
 
         this.state = {
-            left: { left: '-100%' },
+            left: '-100%',
             imgWidth: 0,
-            imgHeight: { height: '0px' },
+            imgHeight: '0px',
+            hovered: false
         }
     }
 
@@ -23,20 +24,61 @@ export default class Universe extends React.Component {
         this.setState({ imgWidth: document.getElementById('universe-img').clientWidth })
         var height = document.getElementById('universe-img').clientHeight;
         console.log(height)
-        this.setState({ imgHeight: { height: height + 'px' } })
+        this.setState({ imgHeight: height + 'px' })
     }
 
     updateOffset = () => {
 
-        var containerWidth = document.getElementById('scroll-img').clientWidth;
+        var containerWidth = document.getElementById('universe-img-container').clientWidth;
 
         var offset = (this.state.imgWidth - containerWidth) / 2;
-        this.setState({ left: { left: '-' + offset + 'px' } })
+        this.setState({ left: '-' + offset + 'px' })
 
     };
 
     componentDidMount() {
         window.addEventListener('resize', this.updateOffset);
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: '.universe-img-container',
+                start: 'top 100%',
+                end: 'center 50%',
+                scrub: true
+            }
+        }).to('.universe-img-container', { opacity: 1 }, 0)
+
+        gsap.fromTo('.img-title', { opacity: 0 }, {
+            opacity: 1,
+            scrollTrigger: {
+                trigger: '.universe-img-container',
+                start: 'top 40%',
+                end: 'bottom 90%',
+                scrub: true
+            }
+
+        })
+
+        gsap.fromTo('.img-number', { opacity: 0 }, {
+            opacity: 1,
+            scrollTrigger: {
+                trigger: '.universe-img-container',
+                start: 'top 40%',
+                end: 'bottom 90%',
+                scrub: true
+            }
+        })
+
+        gsap.fromTo('.universe-text', { opacity: 0 }, {
+            opacity: 1,
+            scrollTrigger: {
+                trigger: '.universe-img-container',
+                start: 'top 40%',
+                end: 'bottom 90%',
+                scrub: true
+            }
+        })
+
     }
 
     componentWillUnmount() {
@@ -44,18 +86,18 @@ export default class Universe extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
- 
+
         if (!this.props.isLoading) {
             ScrollTrigger.create({
                 trigger: document.getElementById('universe-content'),
                 // markers: true,
                 start: 'top +20%',
-        
+
                 onEnter: () => {
                     gsap.to(this.props.scene.background, new Color(0x403d39))
                     gsap.to(this.props.bloomPass, { threshold: 1 })
                 },
-        
+
                 onLeaveBack: () => {
                     gsap.to(this.props.scene.background, new Color(0x000))
                     gsap.to(this.props.bloomPass, { threshold: 0 })
@@ -67,28 +109,49 @@ export default class Universe extends React.Component {
             this.updateOffset();
         }
     }
+    onMouseEnter = e => {
+        this.setState({ hovered: true });
+    };
+
+    onMouseLeave = e => {
+        this.setState({ hovered: false });
+    };
 
     render() {
+
+        const { hovered } = this.state;
+        const left = this.state.left;
+        // figure out a way to use transform: translateX
+        const imgStyle = hovered ? { transform: 'scale(1.05)', left: left } : { left: left };
+
+        const height = this.state.imgHeight;
+        const titleStyle = { height: height };
+
         return (
             <div className='universe-content' id='universe-content'>
                 <div className='universe-text'>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor mollitia laborum dignissimos nisi porro ipsam consequuntur veritatis in tenetur ea.
                 </div>
-                <div className='scroll-img' id='scroll-img'>
-                    <div className='img-container'>
-                        <img src={UniverseImg} id='universe-img' alt='Universe' style={this.state.left}
-                            onLoad={ this.onLoad }
-                        />
-                    </div>
+                <div className='universe-img-container' id='universe-img-container'>
+                    <img src={UniverseImg} id='universe-img' alt='Universe' style={imgStyle}
+                        onLoad={this.onLoad}
+                    />
                 </div>
-                <div className='scroll-img-title' style={this.state.imgHeight}>
+                <a href='https://robertolovece.github.io/Three.js-Universe-Demo/'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='universe-img-title'
+                    style={titleStyle}
+                    onMouseEnter={this.onMouseEnter}
+                    onMouseLeave={this.onMouseLeave}
+                >
                     <div className='img-title'>
                         Universe
                     </div>
                     <div className='img-number'>
                         01
                     </div>
-                </div>
+                </a>
             </div>
         );
     }

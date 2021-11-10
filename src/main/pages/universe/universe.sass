@@ -1,3 +1,4 @@
+@use '../../../utility/styling/base'
 
 .universe-content
 
@@ -16,7 +17,9 @@
     margin-left: 3em
     margin-right: 3em
 
-.universe-text
+.universe-text, a
+
+    color: base.$primary-color
 
     position: relative
     
@@ -29,13 +32,14 @@
     height: fit-content
     margin: auto
 
-    color: white
     font-size: 2vw
     font-weight: 800
     line-height: 1em
     
 
-.scroll-img
+.universe-img-container
+
+    opacity: 0
 
     width: 100%
     position: relative
@@ -54,6 +58,7 @@
     align-items: center
 
     img
+        transition: ease-out 0.3s
         image-rendering: pixelated
 
         position: relative
@@ -62,13 +67,8 @@
         margin-right: auto
         display: block
 
-        transition: 0.2s
 
-    img:hover
-        transform: scale(1.05)
-
-
-.scroll-img-title
+.universe-img-title
 
     position: relative
 
@@ -85,7 +85,7 @@
 
     .img-title
 
-        color: white
+        color: base.$primary-color
         width: fit-content
 
         position: absolute
@@ -94,7 +94,7 @@
 
     .img-number
 
-        color: #d6d6d6a1
+        color: base.$opacity-color
 
         font-size: 4vw
 

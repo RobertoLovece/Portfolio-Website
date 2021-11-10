@@ -39,16 +39,31 @@ export function HomePage(props) {
                     scrub: true,
                 },
             })
+
+
+
+            // gsap.fromTo('.homepage-name', { opacity: 1 }, {
+            //     opacity: 0,
+            //     scrollTrigger: {
+            //         markers: true,
+            //         trigger: '.homepage-grid',
+            //         start: 'center 40%',
+            //         end: 'bottom 90%',
+            //         scrub: true
+            //     }
+    
+            // })
+            
         }
     }, [props.isLoading]);
 
     return (
         <div className='homepage-grid' id="homepage">
             <CSSTransition
-                in={!props.isLoading}
-                timeout={5000}
-                classNames='homepage-name'
-                exit={false}
+                in = { !props.isLoading }
+                timeout = { 5000 }
+                classNames = 'homepage-name'
+                exit = { false }
             >
                 <div className='homepage-name'>
                     ROBERTO LOVECE

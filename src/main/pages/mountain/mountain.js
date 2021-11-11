@@ -154,7 +154,7 @@ export default class Mountain extends React.Component {
                         onLoad={this.onLoad}
                     />
                 </div>
-                <a href='https://robertolovece.github.io/Three.js-Universe-Demo/'
+                <a href='https://robertolovece.github.io/Three.js-Mountain/'
                     target='_blank'
                     rel='noreferrer'
                     className='mountain-img-title-container'

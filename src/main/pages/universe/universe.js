@@ -21,10 +21,11 @@ export default class Universe extends React.Component {
     }
 
     onLoad = () => {
+
         this.setState({ imgWidth: document.getElementById('universe-img').clientWidth })
         var height = document.getElementById('universe-img').clientHeight;
-        console.log(height)
         this.setState({ imgHeight: height + 'px' })
+
     }
 
     updateOffset = () => {
@@ -37,7 +38,13 @@ export default class Universe extends React.Component {
     };
 
     componentDidMount() {
+
         window.addEventListener('resize', this.updateOffset);
+        this.initAnimations();
+
+    }
+
+    initAnimations() {
 
         gsap.timeline({
             scrollTrigger: {
@@ -47,6 +54,9 @@ export default class Universe extends React.Component {
                 scrub: true
             }
         }).to('.universe-img-container', { opacity: 1 }, 0)
+
+        // start: 'top 50%',
+        // end: 'center 60%',
 
         gsap.fromTo('.img-title', { opacity: 0 }, {
             opacity: 1,
@@ -105,24 +115,30 @@ export default class Universe extends React.Component {
             })
         }
 
+        if (prevState.imgHeight !== this.state.imgHeight) {
+            gsap.to('#universe-img', { x: this.state.left, duration: 0.3, paused: true });
+        }
+
         if (prevState.imgWidth !== this.state.imgWidth) {
             this.updateOffset();
         }
     }
-    onMouseEnter = e => {
+
+    onMouseEnter = () => {
         this.setState({ hovered: true });
     };
 
-    onMouseLeave = e => {
+    onMouseLeave = () => {
         this.setState({ hovered: false });
     };
 
     render() {
 
         const { hovered } = this.state;
+
         const left = this.state.left;
-        // figure out a way to use transform: translateX
-        const imgStyle = hovered ? { transform: 'scale(1.05)', left: left } : { left: left };
+        const imgStyle = hovered ? { transition: 'transform 0.3s ease-out', transform: 'translateX(' + left + ') scale(1.05)' } :
+        { transform: 'translateX(' + left + ')' };
 
         const height = this.state.imgHeight;
         const titleStyle = { height: height };
@@ -142,7 +158,7 @@ export default class Universe extends React.Component {
                     rel='noreferrer'
                     className='universe-img-title'
                     style={titleStyle}
-                    onMouseEnter={this.onMouseEnter}
+                    onMouseEnter={this.onMouseEnter} 
                     onMouseLeave={this.onMouseLeave}
                 >
                     <div className='img-title'>

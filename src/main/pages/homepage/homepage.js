@@ -11,17 +11,18 @@ export function HomePage(props) {
         if (!props.isLoading) {
 
             var container = document.getElementById('homepage');
-            var maxHeight = (container.clientHeight || container.offsetHeight) - window.innerHeight;
+            // var maxHeight = (container.clientHeight || container.offsetHeight) - window.innerHeight;
+            // console.log(maxHeight)
 
             gsap.to(props.camera.position, {
                 y: -3.2,
                 ease: 'none',
                 scrollTrigger:
                 {
+                    markers: true,
                     trigger: container,
                     start: 'top top',
-                    end: maxHeight,
-                    pin: false,
+                    end: 'bottom top',
                     scrub: true
                 },
             });
@@ -33,8 +34,7 @@ export function HomePage(props) {
                 {
                     trigger: container,
                     start: 'top top',
-                    end: maxHeight,
-                    pin: false,
+                    end: 'bottom top',
                     scrub: true,
                 },
             });

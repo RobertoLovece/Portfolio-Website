@@ -34,8 +34,7 @@ export default class Universe extends React.Component {
     updateOffset = () => {
 
         var containerWidth = document.getElementById('universe-img-container').clientWidth;
-
-        var offset = (this.state.imgWidth - containerWidth) / 2;
+        var offset = ((this.state.imgWidth - containerWidth) / 2) * Number(containerWidth < this.state.imgWidth);
         this.setState({ left: '-' + offset + 'px' })
 
     };
@@ -97,23 +96,23 @@ export default class Universe extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
 
-        if (!this.props.isLoading) {
-            ScrollTrigger.create({
-                trigger: document.getElementById('universe-content'),
-                // markers: true,
-                start: 'top +20%',
+        // if (!this.props.isLoading) {
+        //     ScrollTrigger.create({
+        //         trigger: document.getElementById('universe-content'),
+        //         // markers: true,
+        //         start: 'top +20%',
 
-                onEnter: () => {
-                    gsap.to(this.props.scene.background, new Color(0x403d39))
-                    gsap.to(this.props.bloomPass, { threshold: 1 })
-                },
+        //         onEnter: () => {
+        //             gsap.to(this.props.scene.background, new Color(0x403d39))
+        //             gsap.to(this.props.bloomPass, { threshold: 1 })
+        //         },
 
-                onLeaveBack: () => {
-                    gsap.to(this.props.scene.background, new Color(0x000))
-                    gsap.to(this.props.bloomPass, { threshold: 0 })
-                },
-            })
-        }
+        //         onLeaveBack: () => {
+        //             gsap.to(this.props.scene.background, new Color(0x000))
+        //             gsap.to(this.props.bloomPass, { threshold: 0 })
+        //         },
+        //     })
+        // }
 
         if (prevState.imgHeight !== this.state.imgHeight) {
             gsap.to('#universe-img', { x: this.state.left, duration: 0.3, paused: true });
@@ -146,7 +145,7 @@ export default class Universe extends React.Component {
         return (
             <div className='universe-content' id='universe-content'>
                 <div className='universe-text'>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor mollitia laborum dignissimos nisi porro ipsam consequuntur veritatis in tenetur ea.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur facilis quibusdam error magni eaque incidunt. Recusandae earum repudiandae ex ad.
                 </div>
                 <div className='universe-img-container' id='universe-img-container'>
                     <img src={UniverseImg} id='universe-img' alt='Universe' style={imgStyle}
@@ -162,7 +161,7 @@ export default class Universe extends React.Component {
                     onMouseLeave={this.onMouseLeave}
                 >
                     <div className='img-title'>
-                        Universe
+                        UNIVERSE
                     </div>
                     <div className='img-number'>
                         01

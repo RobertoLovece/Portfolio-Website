@@ -4,10 +4,11 @@ import { Color } from 'three';
 import { gsap, ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
 
-import './universe.sass';
-import './universe-media.sass';
-import UniverseImg from './img/universe.png';
-export default class Universe extends React.Component {
+import './mountain.sass';
+import './mountain-media.sass';
+import MountainImg from './img/mountain.png';
+
+export default class Mountain extends React.Component {
 
     constructor(props) {
         super(props);
@@ -22,8 +23,8 @@ export default class Universe extends React.Component {
 
     onLoad = () => {
 
-        this.setState({ imgWidth: document.getElementById('universe-img').clientWidth })
-        var height = document.getElementById('universe-img').clientHeight;
+        this.setState({ imgWidth: document.getElementById('mountain-img').clientWidth })
+        var height = document.getElementById('mountain-img').clientHeight;
         this.setState({ imgHeight: height + 'px' })
 
         window.addEventListener('resize', this.updateOffset);
@@ -32,7 +33,7 @@ export default class Universe extends React.Component {
 
     updateOffset = () => {
 
-        var containerWidth = document.getElementById('universe-img-container').clientWidth;
+        var containerWidth = document.getElementById('mountain-img-container').clientWidth;
         var offset = ((this.state.imgWidth - containerWidth) / 2) * Number(containerWidth < this.state.imgWidth);
         this.setState({ left: '-' + offset + 'px' })
 
@@ -48,18 +49,18 @@ export default class Universe extends React.Component {
 
         gsap.timeline({
             scrollTrigger: {
-                trigger: '.universe-img-container',
+                trigger: '.mountain-img-container',
                 start: 'top 100%',
                 end: 'center 50%',
                 scrub: true
             }
-        }).to('.universe-img-container', { opacity: 1 }, 0)
+        }).to('.mountain-img-container', { opacity: 1 }, 0)
 
 
-        gsap.fromTo('.universe-img-title', { opacity: 0 }, {
+        gsap.fromTo('.mountain-img-title', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.universe-img-container',
+                trigger: '.mountain-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
@@ -67,20 +68,20 @@ export default class Universe extends React.Component {
 
         })
 
-        gsap.fromTo('.universe-img-number', { opacity: 0 }, {
+        gsap.fromTo('.mountain-img-number', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.universe-img-container',
+                trigger: '.mountain-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
             }
         })
 
-        gsap.fromTo('.universe-text', { opacity: 0 }, {
+        gsap.fromTo('.mountain-text', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.universe-img-container',
+                trigger: '.mountain-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
@@ -99,7 +100,7 @@ export default class Universe extends React.Component {
 
         if (!this.props.isLoading && test) {
             ScrollTrigger.create({
-                trigger: document.getElementById('universe-content'),
+                trigger: document.getElementById('mountain-content'),
                 // markers: true,
                 start: 'top +20%',
 
@@ -116,7 +117,7 @@ export default class Universe extends React.Component {
         }
 
         if (prevState.imgHeight !== this.state.imgHeight) {
-            gsap.to('#universe-img', { x: this.state.left, duration: 0.3, paused: true });
+            gsap.to('#mountain-img', { x: this.state.left, duration: 0.3, paused: true });
         }
 
         if (prevState.imgWidth !== this.state.imgWidth) {
@@ -144,29 +145,29 @@ export default class Universe extends React.Component {
         const titleStyle = { height: height };
 
         return (
-            <div className='universe-content' id='universe-content'>
-                <div className='universe-text'>
+            <div className='mountain-content' id='mountain-content'>
+                <div className='mountain-text'>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur facilis quibusdam error magni eaque incidunt. Recusandae earum repudiandae ex ad.
                 </div>
-                <div className='universe-img-container' id='universe-img-container'>
-                    <img src={UniverseImg} id='universe-img' alt='Universe' style={imgStyle}
+                <div className='mountain-img-container' id='mountain-img-container'>
+                    <img src={ MountainImg } id='mountain-img' alt='Mountain' style={imgStyle}
                         onLoad={this.onLoad}
                     />
                 </div>
                 <a href='https://robertolovece.github.io/Three.js-Universe-Demo/'
                     target='_blank'
                     rel='noreferrer'
-                    className='universe-img-title-container'
-                    id='universe-img-title-container'
+                    className='mountain-img-title-container'
+                    id='mountain-img-title-container'
                     style={titleStyle}
                     onMouseEnter={this.onMouseEnter}
                     onMouseLeave={this.onMouseLeave}
                 >
-                    <div className='universe-img-title'>
-                        UNIVERSE
+                    <div className='mountain-img-title'>
+                        MOUNTAIN    
                     </div>
-                    <div className='universe-img-number'>
-                        01
+                    <div className='mountain-img-number'>
+                        02
                     </div>
                 </a>
             </div>

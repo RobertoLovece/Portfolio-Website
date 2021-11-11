@@ -5,9 +5,8 @@ import { gsap, ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
 
 import './universe.sass';
-import './universe-1200.sass';
+import './universe-media.sass';
 import UniverseImg from './img/universe.png';
-
 export default class Universe extends React.Component {
 
     constructor(props) {
@@ -148,7 +147,7 @@ export default class Universe extends React.Component {
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur facilis quibusdam error magni eaque incidunt. Recusandae earum repudiandae ex ad.
                 </div>
                 <div className='universe-img-container' id='universe-img-container'>
-                    <img src={UniverseImg} id='universe-img' alt='Universe' style={imgStyle}
+                    <img src={ UniverseImg } id='universe-img' alt='Universe' style={imgStyle}
                         onLoad={this.onLoad}
                     />
                 </div>

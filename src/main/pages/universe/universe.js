@@ -5,6 +5,7 @@ import { gsap, ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
 
 import './universe.sass';
+import './universe-1200.sass';
 import UniverseImg from './img/universe.png';
 
 export default class Universe extends React.Component {
@@ -26,6 +27,8 @@ export default class Universe extends React.Component {
         var height = document.getElementById('universe-img').clientHeight;
         this.setState({ imgHeight: height + 'px' })
 
+        window.addEventListener('resize', this.updateOffset);
+
     }
 
     updateOffset = () => {
@@ -39,9 +42,8 @@ export default class Universe extends React.Component {
 
     componentDidMount() {
 
-        window.addEventListener('resize', this.updateOffset);
         this.initAnimations();
-
+        
     }
 
     initAnimations() {

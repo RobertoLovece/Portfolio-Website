@@ -41,7 +41,7 @@ export default class Universe extends React.Component {
     componentDidMount() {
 
         this.initAnimations();
-        
+
     }
 
     initAnimations() {
@@ -95,23 +95,25 @@ export default class Universe extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
 
-        // if (!this.props.isLoading) {
-        //     ScrollTrigger.create({
-        //         trigger: document.getElementById('universe-content'),
-        //         // markers: true,
-        //         start: 'top +20%',
+        var test = false;
 
-        //         onEnter: () => {
-        //             gsap.to(this.props.scene.background, new Color(0x403d39))
-        //             gsap.to(this.props.bloomPass, { threshold: 1 })
-        //         },
+        if (!this.props.isLoading && test) {
+            ScrollTrigger.create({
+                trigger: document.getElementById('universe-content'),
+                // markers: true,
+                start: 'top +20%',
 
-        //         onLeaveBack: () => {
-        //             gsap.to(this.props.scene.background, new Color(0x000))
-        //             gsap.to(this.props.bloomPass, { threshold: 0 })
-        //         },
-        //     })
-        // }
+                onEnter: () => {
+                    gsap.to(this.props.scene.background, new Color(0x403d39))
+                    gsap.to(this.props.bloomPass, { threshold: 1 })
+                },
+
+                onLeaveBack: () => {
+                    gsap.to(this.props.scene.background, new Color(0x000))
+                    gsap.to(this.props.bloomPass, { threshold: 0 })
+                },
+            })
+        }
 
         if (prevState.imgHeight !== this.state.imgHeight) {
             gsap.to('#universe-img', { x: this.state.left, duration: 0.3, paused: true });
@@ -147,7 +149,7 @@ export default class Universe extends React.Component {
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur facilis quibusdam error magni eaque incidunt. Recusandae earum repudiandae ex ad.
                 </div>
                 <div className='universe-img-container' id='universe-img-container'>
-                    <img src={ UniverseImg } id='universe-img' alt='Universe' style={imgStyle}
+                    <img src={UniverseImg} id='universe-img' alt='Universe' style={imgStyle}
                         onLoad={this.onLoad}
                     />
                 </div>
@@ -155,6 +157,7 @@ export default class Universe extends React.Component {
                     target='_blank'
                     rel='noreferrer'
                     className='universe-img-title'
+                    id='universe-img-title'
                     style={titleStyle}
                     onMouseEnter={this.onMouseEnter}
                     onMouseLeave={this.onMouseLeave}

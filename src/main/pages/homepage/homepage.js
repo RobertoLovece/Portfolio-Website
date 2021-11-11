@@ -1,5 +1,4 @@
 import React from 'react';
-import { CSSTransition } from 'react-transition-group';
 
 import { gsap, ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
@@ -25,7 +24,7 @@ export function HomePage(props) {
                     pin: false,
                     scrub: true
                 },
-            })
+            });
 
             gsap.to(props.atmosphere.position, {
                 y: 0.3,
@@ -38,37 +37,29 @@ export function HomePage(props) {
                     pin: false,
                     scrub: true,
                 },
-            })
+            });
 
-
-
-            // gsap.fromTo('.homepage-name', { opacity: 1 }, {
-            //     opacity: 0,
-            //     scrollTrigger: {
-            //         markers: true,
-            //         trigger: '.homepage-grid',
-            //         start: 'center 40%',
-            //         end: 'bottom 90%',
-            //         scrub: true
-            //     }
+            var timeline = gsap.timeline();
+            timeline.fromTo('.homepage-name', { opacity: 0 }, { opacity: 1, duration: 5, ease: 'power1.out' });
+            timeline.fromTo('.homepage-name', { opacity: 1 }, {
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: '.homepage-grid',
+                    start: 'center 25%',
+                    end: 'bottom 50%',
+                    scrub: true
+                }
     
-            // })
-            
+            });
+
         }
     }, [props.isLoading]);
 
     return (
         <div className='homepage-grid' id="homepage">
-            <CSSTransition
-                in = { !props.isLoading }
-                timeout = { 5000 }
-                classNames = 'homepage-name'
-                exit = { false }
-            >
-                <div className='homepage-name'>
-                    ROBERTO LOVECE
-                </div>
-            </CSSTransition>
+            <div className='homepage-name'>
+                ROBERTO LOVECE
+            </div>
             <div className='homepage-bottom'></div>
         </div>
     );

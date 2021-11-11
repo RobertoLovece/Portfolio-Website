@@ -55,15 +55,13 @@ export default class Universe extends React.Component {
             }
         }).to('.universe-img-container', { opacity: 1 }, 0)
 
-        // start: 'top 50%',
-        // end: 'center 60%',
 
         gsap.fromTo('.img-title', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
                 trigger: '.universe-img-container',
-                start: 'top 40%',
-                end: 'bottom 90%',
+                start: 'top 50%',
+                end: 'center 60%',
                 scrub: true
             }
 
@@ -73,8 +71,8 @@ export default class Universe extends React.Component {
             opacity: 1,
             scrollTrigger: {
                 trigger: '.universe-img-container',
-                start: 'top 40%',
-                end: 'bottom 90%',
+                start: 'top 50%',
+                end: 'center 60%',
                 scrub: true
             }
         })
@@ -83,8 +81,8 @@ export default class Universe extends React.Component {
             opacity: 1,
             scrollTrigger: {
                 trigger: '.universe-img-container',
-                start: 'top 40%',
-                end: 'bottom 90%',
+                start: 'top 50%',
+                end: 'center 60%',
                 scrub: true
             }
         })
@@ -138,7 +136,7 @@ export default class Universe extends React.Component {
 
         const left = this.state.left;
         const imgStyle = hovered ? { transition: 'transform 0.3s ease-out', transform: 'translateX(' + left + ') scale(1.05)' } :
-        { transform: 'translateX(' + left + ')' };
+            { transform: 'translateX(' + left + ')' };
 
         const height = this.state.imgHeight;
         const titleStyle = { height: height };
@@ -158,7 +156,7 @@ export default class Universe extends React.Component {
                     rel='noreferrer'
                     className='universe-img-title'
                     style={titleStyle}
-                    onMouseEnter={this.onMouseEnter} 
+                    onMouseEnter={this.onMouseEnter}
                     onMouseLeave={this.onMouseLeave}
                 >
                     <div className='img-title'>

@@ -19,7 +19,6 @@ export function HomePage(props) {
                 ease: 'none',
                 scrollTrigger:
                 {
-                    markers: true,
                     trigger: container,
                     start: 'top top',
                     end: 'bottom top',

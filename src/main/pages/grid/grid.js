@@ -4,10 +4,11 @@ import { Color } from 'three';
 import { gsap, ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
 
-import './universe.sass';
-import './universe-media.sass';
-import UniverseImg from './img/universe.png';
-export default class Universe extends React.Component {
+import './grid.sass';
+import './grid-media.sass';
+import GridImg from './img/grid.png';
+
+export default class Grid extends React.Component {
 
     constructor(props) {
         super(props);
@@ -22,8 +23,8 @@ export default class Universe extends React.Component {
 
     onLoad = () => {
 
-        this.setState({ imgWidth: document.getElementById('universe-img').clientWidth })
-        var height = document.getElementById('universe-img').clientHeight;
+        this.setState({ imgWidth: document.getElementById('grid-img').clientWidth })
+        var height = document.getElementById('grid-img').clientHeight;
         this.setState({ imgHeight: height + 'px' })
 
         window.addEventListener('resize', this.updateOffset);
@@ -32,7 +33,7 @@ export default class Universe extends React.Component {
 
     updateOffset = () => {
 
-        var containerWidth = document.getElementById('universe-img-container').clientWidth;
+        var containerWidth = document.getElementById('grid-img-container').clientWidth;
         var offset = ((this.state.imgWidth - containerWidth) / 2) * Number(containerWidth < this.state.imgWidth);
         this.setState({ left: '-' + offset + 'px' })
 
@@ -48,18 +49,18 @@ export default class Universe extends React.Component {
 
         gsap.timeline({
             scrollTrigger: {
-                trigger: '.universe-img-container',
+                trigger: '.grid-img-container',
                 start: 'top 100%',
                 end: 'center 50%',
                 scrub: true
             }
-        }).to('.universe-img-container', { opacity: 1 }, 0)
+        }).to('.grid-img-container', { opacity: 1 }, 0)
 
 
-        gsap.fromTo('.universe-img-title', { opacity: 0 }, {
+        gsap.fromTo('.grid-img-title', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.universe-img-container',
+                trigger: '.grid-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
@@ -67,20 +68,20 @@ export default class Universe extends React.Component {
 
         })
 
-        gsap.fromTo('.universe-img-number', { opacity: 0 }, {
+        gsap.fromTo('.grid-img-number', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.universe-img-container',
+                trigger: '.grid-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
             }
         })
 
-        gsap.fromTo('.universe-text', { opacity: 0 }, {
+        gsap.fromTo('.grid-text', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.universe-img-container',
+                trigger: '.grid-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
@@ -99,7 +100,7 @@ export default class Universe extends React.Component {
 
         if (!this.props.isLoading && test) {
             ScrollTrigger.create({
-                trigger: document.getElementById('universe-content'),
+                trigger: document.getElementById('grid-content'),
                 // markers: true,
                 start: 'top +20%',
 
@@ -116,7 +117,7 @@ export default class Universe extends React.Component {
         }
 
         if (prevState.imgHeight !== this.state.imgHeight) {
-            gsap.to('#universe-img', { x: this.state.left, duration: 0.3, paused: true });
+            gsap.to('#grid-img', { x: this.state.left, duration: 0.3, paused: true });
         }
 
         if (prevState.imgWidth !== this.state.imgWidth) {
@@ -144,29 +145,29 @@ export default class Universe extends React.Component {
         const titleStyle = { height: height };
 
         return (
-            <div className='universe-content' id='universe-content'>
-                <div className='universe-text'>
+            <div className='grid-content' id='grid-content'>
+                <div className='grid-text'>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur facilis quibusdam error magni eaque incidunt. Recusandae earum repudiandae ex ad.
                 </div>
-                <div className='universe-img-container' id='universe-img-container'>
-                    <img src={ UniverseImg } id='universe-img' alt='Universe' style={imgStyle}
+                <div className='grid-img-container' id='grid-img-container'>
+                    <img src={ GridImg } id='grid-img' alt='Grid' style={imgStyle}
                         onLoad={this.onLoad}
                     />
                 </div>
-                <a href='https://robertolovece.github.io/Three.js-Universe-Demo/'
+                <a href='https://robertolovece.github.io/Three.js-Rope-Physics/'
                     target='_blank'
                     rel='noreferrer'
-                    className='universe-img-title-container'
-                    id='universe-img-title-container'
+                    className='grid-img-title-container'
+                    id='grid-img-title-container'
                     style={titleStyle}
                     onMouseEnter={this.onMouseEnter}
                     onMouseLeave={this.onMouseLeave}
                 >
-                    <div className='universe-img-title'>
-                        UNIVERSE
+                    <div className='grid-img-title'>
+                        GRID    
                     </div>
-                    <div className='universe-img-number'>
-                        01
+                    <div className='grid-img-number'>
+                        04
                     </div>
                 </a>
             </div>

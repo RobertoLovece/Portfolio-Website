@@ -43,8 +43,9 @@ export function HomePage(props) {
             timeline.fromTo('.homepage-name', { opacity: 1 }, {
                 opacity: 0,
                 scrollTrigger: {
+                    markers: true,
                     trigger: '.homepage-grid',
-                    start: 'center 25%',
+                    start: 'center 45%',
                     end: 'bottom 50%',
                     scrub: true
                 }

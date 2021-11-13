@@ -6,14 +6,66 @@
    id="Layer_1"
    x="0px"
    y="0px"
-   width="242.60001"
+   width="262.30002"
    height="242.60001"
-   viewBox="0 0 242.60001 242.60001"
+   viewBox="0 0 262.30002 242.60001"
    enable-background="new 0 0 1400 980"
    xml:space="preserve"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"><defs
    id="defs115">
+	
+	
+	
+
+		
+		
+		
+		
+		
+		
+		
+		
+	</defs>
+<g
+   id="XMLID_227_"
+   transform="translate(-712.29997,-611.49998)">
+			<g
+   id="XMLID_190_">
+				<circle
+   id="XMLID_193_"
+   fill="#f9a01b"
+   cx="853.29999"
+   cy="732.79999"
+   r="121.3" />
+				<circle
+   id="XMLID_192_"
+   fill="#ffe500"
+   cx="853.29999"
+   cy="732.79999"
+   r="101.6" />
+				<circle
+   id="XMLID_191_"
+   fill="#fff197"
+   cx="853.29999"
+   cy="732.79999"
+   r="76.599998" />
+			</g>
+			<g
+   id="XMLID_216_">
+				<circle
+   id="XMLID_218_"
+   cx="821.09998"
+   cy="732.79999"
+   r="108.8" />
+				<path
+   id="XMLID_217_"
+   fill="#58595b"
+   d="m 850.2,627.9 c 37,20.4 62,59.7 62,104.9 0,45.2 -25.1,84.5 -62,104.9 46,-12.7 79.8,-54.8 79.8,-104.9 0,-50.1 -33.9,-92.2 -79.8,-104.9 z" />
+			</g>
+		</g><g
+   id="XMLID_272_"
+   transform="translate(-712.29997,-611.49998)">
 		<defs
    id="defs71">
 			<filter
@@ -145,68 +197,5 @@
 		
 		
 			
-	
-	
-	
-	
-
-		
-		
-		
-		
-		
-		
-		
-		
-	</defs>
-<g
-   id="XMLID_224_"
-   transform="translate(-525.27845,-120.5737)">
-			
-			
-		</g><g
-   id="XMLID_229_"
-   transform="translate(-1038.7,-611.49998)">
-			<g
-   id="XMLID_186_">
-				<circle
-   id="XMLID_189_"
-   fill="#f9a01b"
-   cx="1160"
-   cy="732.79999"
-   r="121.3" />
-				<circle
-   id="XMLID_188_"
-   fill="#ffe500"
-   cx="1160"
-   cy="732.79999"
-   r="101.6" />
-				<circle
-   id="XMLID_187_"
-   fill="#fff197"
-   cx="1160"
-   cy="732.79999"
-   r="76.599998" />
-			</g>
-			<g
-   id="XMLID_228_">
-				<g
-   id="XMLID_219_">
-					<circle
-   id="XMLID_221_"
-   fill="#58595b"
-   cx="1160"
-   cy="732.79999"
-   r="108.8" />
-				</g>
-				<g
-   id="XMLID_202_">
-					<circle
-   id="XMLID_220_"
-   cx="1160"
-   cy="732.79999"
-   r="97.099998" />
-				</g>
-			</g>
-		</g>
+	</g>
 </svg>

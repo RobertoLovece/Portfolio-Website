@@ -6,7 +6,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 import './grid.sass';
 import './grid-media.sass';
-import GridImg from './img/grid.png';
+import GridImg0 from './img/grid.png';
+import GridImg1 from '../universe/img/universe.png';
 
 export default class Grid extends React.Component {
 
@@ -17,8 +18,14 @@ export default class Grid extends React.Component {
             left: '-100%',
             imgWidth: 0,
             imgHeight: '0px',
-            hovered: false
+            hovered: false,
+            imgNumber: 0
         }
+
+        this.images = [
+            GridImg0,
+            GridImg1
+        ]
     }
 
     onLoad = () => {
@@ -36,6 +43,12 @@ export default class Grid extends React.Component {
         var containerWidth = document.getElementById('grid-img-container').clientWidth;
         var offset = ((this.state.imgWidth - containerWidth) / 2) * Number(containerWidth < this.state.imgWidth);
         this.setState({ left: '-' + offset + 'px' })
+
+        if (containerWidth <= 850) {
+            this.setState({ imgNumber: 1 })
+        } else {
+            this.setState({ imgNumber: 0 })
+        }
 
     };
 
@@ -96,26 +109,6 @@ export default class Grid extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
 
-        var test = false;
-
-        if (!this.props.isLoading && test) {
-            ScrollTrigger.create({
-                trigger: document.getElementById('grid-content'),
-                // markers: true,
-                start: 'top +20%',
-
-                onEnter: () => {
-                    gsap.to(this.props.scene.background, new Color(0x403d39))
-                    gsap.to(this.props.bloomPass, { threshold: 1 })
-                },
-
-                onLeaveBack: () => {
-                    gsap.to(this.props.scene.background, new Color(0x000))
-                    gsap.to(this.props.bloomPass, { threshold: 0 })
-                },
-            })
-        }
-
         if (prevState.imgHeight !== this.state.imgHeight) {
             gsap.to('#grid-img', { x: this.state.left, duration: 0.3, paused: true });
         }
@@ -150,7 +143,7 @@ export default class Grid extends React.Component {
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur facilis quibusdam error magni eaque incidunt. Recusandae earum repudiandae ex ad.
                 </div>
                 <div className='grid-img-container' id='grid-img-container'>
-                    <img src={ GridImg } id='grid-img' alt='Grid' style={imgStyle}
+                    <img src={ this.images[this.state.imgNumber] } id='grid-img' alt='Grid' style={imgStyle}
                         onLoad={this.onLoad}
                     />
                 </div>

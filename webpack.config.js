@@ -21,6 +21,7 @@ module.exports = function (_env, argv) {
 		plugins: [
 			new HtmlWebpackPlugin({
 				template: './index.html',
+				favicon: './src/favicon.svg',
 				inject: true,
 				chunks: ['index'],
 				filename: 'index.html'

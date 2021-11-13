@@ -153,7 +153,7 @@ export default class Universe extends React.Component {
                         onLoad={this.onLoad}
                     />
                 </div>
-                <a href='https://robertolovece.github.io/Three.js-Universe-Demo/'
+                <a href='https://robertolovece.github.io/Universe/'
                     target='_blank'
                     rel='noreferrer'
                     className='universe-img-title-container'

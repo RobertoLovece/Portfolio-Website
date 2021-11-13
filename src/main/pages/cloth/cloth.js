@@ -154,7 +154,7 @@ export default class Cloth extends React.Component {
                         onLoad={this.onLoad}
                     />
                 </div>
-                <a href='https://robertolovece.github.io/Three.js-Cloth/'
+                <a href='https://robertolovece.github.io/Cloth/'
                     target='_blank'
                     rel='noreferrer'
                     className='cloth-img-title-container'

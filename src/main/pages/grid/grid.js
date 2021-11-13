@@ -1,13 +1,12 @@
 import React from 'react';
-import { Color } from 'three';
 
 import { gsap, ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
 
 import './grid.sass';
 import './grid-media.sass';
-import GridImg0 from './img/grid.png';
-import GridImg1 from '../universe/img/universe.png';
+import GridImg0 from './img/rope-grid-big.png';
+import GridImg1 from './img/rope-grid-small.png';
 
 export default class Grid extends React.Component {
 
@@ -44,7 +43,7 @@ export default class Grid extends React.Component {
         var offset = ((this.state.imgWidth - containerWidth) / 2) * Number(containerWidth < this.state.imgWidth);
         this.setState({ left: '-' + offset + 'px' })
 
-        if (containerWidth <= 850) {
+        if (containerWidth <= 900) {
             this.setState({ imgNumber: 1 })
         } else {
             this.setState({ imgNumber: 0 })
@@ -147,7 +146,7 @@ export default class Grid extends React.Component {
                         onLoad={this.onLoad}
                     />
                 </div>
-                <a href='https://robertolovece.github.io/Three.js-Rope-Physics/'
+                <a href='https://robertolovece.github.io/Rope-Grid/'
                     target='_blank'
                     rel='noreferrer'
                     className='grid-img-title-container'
@@ -157,7 +156,7 @@ export default class Grid extends React.Component {
                     onMouseLeave={this.onMouseLeave}
                 >
                     <div className='grid-img-title'>
-                        GRID    
+                        ROPEGRID    
                     </div>
                     <div className='grid-img-number'>
                         04

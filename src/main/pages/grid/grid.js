@@ -139,10 +139,12 @@ export default class Grid extends React.Component {
         return (
             <div className='grid-content' id='grid-content'>
                 <div className='grid-text'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur facilis quibusdam error magni eaque incidunt. Recusandae earum repudiandae ex ad.
+                    An interactive Verlet integration rope-like grid created with JavaScript using WebGL.
+                    Drag the mouse/pointer across the screen to cut ropes.
+                    Click onto a point to toggle whether it's locked or not.
                 </div>
                 <div className='grid-img-container' id='grid-img-container'>
-                    <img src={ this.images[this.state.imgNumber] } id='grid-img' alt='Grid' style={imgStyle}
+                    <img src={this.images[this.state.imgNumber]} id='grid-img' alt='Grid' style={imgStyle}
                         onLoad={this.onLoad}
                     />
                 </div>
@@ -156,7 +158,7 @@ export default class Grid extends React.Component {
                     onMouseLeave={this.onMouseLeave}
                 >
                     <div className='grid-img-title'>
-                        ROPEGRID    
+                        ROPEGRID
                     </div>
                     <div className='grid-img-number'>
                         04

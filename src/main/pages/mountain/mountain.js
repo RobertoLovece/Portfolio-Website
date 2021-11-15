@@ -147,7 +147,8 @@ export default class Mountain extends React.Component {
         return (
             <div className='mountain-content' id='mountain-content'>
                 <div className='mountain-text'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur facilis quibusdam error magni eaque incidunt. Recusandae earum repudiandae ex ad.
+                A procedurally generated mountain made with Fractional Brownian motion. Has adjustable fog and snow. Due to high polygon count
+                may struggle to run on lower-end devices. Created with JavaScript using WebGL.
                 </div>
                 <div className='mountain-img-container' id='mountain-img-container'>
                     <img src={ MountainImg } id='mountain-img' alt='Mountain' style={imgStyle}

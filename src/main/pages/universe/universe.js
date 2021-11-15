@@ -7,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 import './universe.sass';
 import './universe-media.sass';
 import UniverseImg from './img/universe.png';
+import GitHub from '../../../utility/img/github.svg';
 export default class Universe extends React.Component {
 
     constructor(props) {
@@ -15,7 +16,6 @@ export default class Universe extends React.Component {
         this.state = {
             left: '-100%',
             imgWidth: 0,
-            imgHeight: '0px',
             hovered: false
         }
     }
@@ -23,8 +23,6 @@ export default class Universe extends React.Component {
     onLoad = () => {
 
         this.setState({ imgWidth: document.getElementById('universe-img').clientWidth })
-        var height = document.getElementById('universe-img').clientHeight;
-        this.setState({ imgHeight: height + 'px' })
 
         window.addEventListener('resize', this.updateOffset);
 
@@ -68,6 +66,16 @@ export default class Universe extends React.Component {
         })
 
         gsap.fromTo('.universe-img-number', { opacity: 0 }, {
+            opacity: 1,
+            scrollTrigger: {
+                trigger: '.universe-img-container',
+                start: 'top 50%',
+                end: 'center 60%',
+                scrub: true
+            }
+        })
+
+        gsap.fromTo('.universe-github', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
                 trigger: '.universe-img-container',
@@ -140,33 +148,48 @@ export default class Universe extends React.Component {
         const imgStyle = hovered ? { transition: 'transform 0.3s ease-out', transform: 'translateX(' + left + ') scale(1.05)' } :
             { transform: 'translateX(' + left + ')' };
 
-        const height = this.state.imgHeight;
-        const titleStyle = { height: height };
-
         return (
             <div className='universe-content' id='universe-content'>
                 <div className='universe-text'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur facilis quibusdam error magni eaque incidunt. Recusandae earum repudiandae ex ad.
+                    My first main experiment with JavaScipt and WebGL. Takes advantage of the WebGL points feature for the outer particle ring.
                 </div>
-                <div className='universe-img-container' id='universe-img-container'>
-                    <img src={ UniverseImg } id='universe-img' alt='Universe' style={imgStyle}
-                        onLoad={this.onLoad}
-                    />
-                </div>
-                <a href='https://robertolovece.github.io/Universe/'
-                    target='_blank'
-                    rel='noreferrer'
-                    className='universe-img-title-container'
-                    id='universe-img-title-container'
-                    style={titleStyle}
+                <div
+                    className='universe-img-container'
+                    id='universe-img-container'
                     onMouseEnter={this.onMouseEnter}
                     onMouseLeave={this.onMouseLeave}
                 >
-                    <div className='universe-img-title'>
+                    <a href='https://robertolovece.github.io/Universe/'
+                        target='_blank'
+                        rel='noreferrer'>
+                        <img src={UniverseImg} id='universe-img' alt='Universe' style={imgStyle}
+                            onLoad={this.onLoad}
+                        />
+                        <div className='universe-img-number'>
+                            01
+                        </div>
+                    </a>
+                    <a
+                        className='github'
+                        href='https://github.com/RobertoLovece/Universe'
+                        target='_blank'
+                        rel='noreferrer'
+                    >
+                        <GitHub 
+                            className='universe-github' 
+                            onMouseEnter={this.onMouseLeave}
+                            onMouseLeave={this.onMouseEnter}
+                        />
+                    </a>
+                </div>
+                <a href='https://robertolovece.github.io/Universe/'
+                    target='_blank'
+                    rel='noreferrer'>
+                    <div className='universe-img-title'
+                        onMouseEnter={this.onMouseEnter}
+                        onMouseLeave={this.onMouseLeave}
+                    >
                         UNIVERSE
-                    </div>
-                    <div className='universe-img-number'>
-                        01
                     </div>
                 </a>
             </div>

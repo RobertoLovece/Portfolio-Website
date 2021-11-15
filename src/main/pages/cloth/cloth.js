@@ -147,7 +147,7 @@ export default class Cloth extends React.Component {
         return (
             <div className='cloth-content' id='cloth-content'>
                 <div className='cloth-text'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur facilis quibusdam error magni eaque incidunt. Recusandae earum repudiandae ex ad.
+                A Verlet integration interactive cloth simulation created with JavaScript using WebGL. Click the screen to toggle gravity direction.
                 </div>
                 <div className='cloth-img-container' id='cloth-img-container'>
                     <img src={ ClothImg } id='cloth-img' alt='Cloth' style={imgStyle}

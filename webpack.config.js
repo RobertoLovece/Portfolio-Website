@@ -21,7 +21,7 @@ module.exports = function (_env, argv) {
 		plugins: [
 			new HtmlWebpackPlugin({
 				template: './index.html',
-				favicon: './src/utility/icon/favicon.png',
+				favicon: './src/utility/img/icon/favicon.png',
 				inject: true,
 				chunks: ['index'],
 				filename: 'index.html'
@@ -52,7 +52,7 @@ module.exports = function (_env, argv) {
 					]
 				},
 				{
-					test: /\.(png|svg|jpg|jpeg|gif)$/i,
+					test: /\.(png|jpg|jpeg|gif)$/i,
 					type: 'asset/resource',
 				},
 				{
@@ -62,6 +62,10 @@ module.exports = function (_env, argv) {
 						'raw-loader',
 						'glslify-loader'
 					]
+				},
+				{
+					test: /\.svg$/,
+					use: ['@svgr/webpack'],
 				},
 				{
 					test: /\.(jsx|js)$/,

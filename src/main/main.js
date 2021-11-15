@@ -45,7 +45,7 @@ export function Main(props) {
                     bloomPass = { props.bloomPass }
                 />
             </div>
-            <div className='bottom' />
+            {/* <div className='bottom' /> */}
         </>
 
     );

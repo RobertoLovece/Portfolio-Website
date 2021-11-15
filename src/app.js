@@ -1,12 +1,14 @@
+// react
 import React from 'react';
 
+// gsap
 import { gsap, ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
 
 // react components
-import {Main} from './main/main.js';
+import { Main } from './main/main.js';
 
-// WebGL
+// WebGL 
 import { initScene } from './webgl/render/scene.js';
 import { initPostProcessing } from './webgl/render/post-processing.js';
 import { initEclipse, initAtmosphere, initStars, initOrbit } from './webgl/objects/objects.js';
@@ -108,19 +110,24 @@ export default class App extends React.Component {
     render() {
         return (
             <>
+
                 <div className='canvas'
                     ref={(mount) => { this.mount = mount }}
                 />
+
+
                 <div className='main'>
-                    <Main 
-                        isLoading = { this.state.isLoading } 
-                        camera = { this.camera } 
-                        atmosphere = { this.atmosphere } 
-                        scene = { this.scene }
-                        bloomPass = { this.bloomPass }
+                    <Main
+                        isLoading={this.state.isLoading}
+                        camera={this.camera}
+                        atmosphere={this.atmosphere}
+                        scene={this.scene}
+                        bloomPass={this.bloomPass}
                     />
                 </div>
+
             </>
+
         )
     }
 

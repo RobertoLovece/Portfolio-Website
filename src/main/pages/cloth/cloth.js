@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 import './cloth.sass';
 import './cloth-media.sass';
 import ClothImg from './img/cloth.png';
-
+import GitHub from '../../../utility/img/github.svg';
 export default class Cloth extends React.Component {
 
     constructor(props) {
@@ -16,7 +16,6 @@ export default class Cloth extends React.Component {
         this.state = {
             left: '-100%',
             imgWidth: 0,
-            imgHeight: '0px',
             hovered: false
         }
     }
@@ -24,8 +23,6 @@ export default class Cloth extends React.Component {
     onLoad = () => {
 
         this.setState({ imgWidth: document.getElementById('cloth-img').clientWidth })
-        var height = document.getElementById('cloth-img').clientHeight;
-        this.setState({ imgHeight: height + 'px' })
 
         window.addEventListener('resize', this.updateOffset);
 
@@ -78,6 +75,16 @@ export default class Cloth extends React.Component {
             }
         })
 
+        gsap.fromTo('.cloth-github', { opacity: 0 }, {
+            opacity: 1,
+            scrollTrigger: {
+                trigger: '.cloth-img-container',
+                start: 'top 50%',
+                end: 'center 60%',
+                scrub: true
+            }
+        })
+
         gsap.fromTo('.cloth-text', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
@@ -116,10 +123,6 @@ export default class Cloth extends React.Component {
             })
         }
 
-        if (prevState.imgHeight !== this.state.imgHeight) {
-            gsap.to('#cloth-img', { x: this.state.left, duration: 0.3, paused: true });
-        }
-
         if (prevState.imgWidth !== this.state.imgWidth) {
             this.updateOffset();
         }
@@ -141,33 +144,48 @@ export default class Cloth extends React.Component {
         const imgStyle = hovered ? { transition: 'transform 0.3s ease-out', transform: 'translateX(' + left + ') scale(1.05)' } :
             { transform: 'translateX(' + left + ')' };
 
-        const height = this.state.imgHeight;
-        const titleStyle = { height: height };
-
         return (
             <div className='cloth-content' id='cloth-content'>
                 <div className='cloth-text'>
                 A Verlet integration interactive cloth simulation created with JavaScript using WebGL. Click the screen to toggle gravity direction.
                 </div>
-                <div className='cloth-img-container' id='cloth-img-container'>
-                    <img src={ ClothImg } id='cloth-img' alt='Cloth' style={imgStyle}
-                        onLoad={this.onLoad}
-                    />
-                </div>
-                <a href='https://robertolovece.github.io/Cloth/'
-                    target='_blank'
-                    rel='noreferrer'
-                    className='cloth-img-title-container'
-                    id='cloth-img-title-container'
-                    style={titleStyle}
+                <div
+                    className='cloth-img-container'
+                    id='cloth-img-container'
                     onMouseEnter={this.onMouseEnter}
                     onMouseLeave={this.onMouseLeave}
                 >
-                    <div className='cloth-img-title'>
+                    <a href='https://robertolovece.github.io/Cloth/'
+                        target='_blank'
+                        rel='noreferrer'>
+                        <img src={ClothImg} id='cloth-img' alt='Cloth' style={imgStyle}
+                            onLoad={this.onLoad}
+                        />
+                        <div className='cloth-img-number'>
+                            01
+                        </div>
+                    </a>
+                    <a
+                        className='github'
+                        href='https://github.com/RobertoLovece/Cloth'
+                        target='_blank'
+                        rel='noreferrer'
+                    >
+                        <GitHub 
+                            className='cloth-github' 
+                            onMouseEnter={this.onMouseLeave}
+                            onMouseLeave={this.onMouseEnter}
+                        />
+                    </a>
+                </div>
+                <a href='https://robertolovece.github.io/Cloth/'
+                    target='_blank'
+                    rel='noreferrer'>
+                    <div className='cloth-img-title'
+                        onMouseEnter={this.onMouseEnter}
+                        onMouseLeave={this.onMouseLeave}
+                    >
                         CLOTH
-                    </div>
-                    <div className='cloth-img-number'>
-                        03
                     </div>
                 </a>
             </div>

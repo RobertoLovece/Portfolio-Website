@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 import './mountain.sass';
 import './mountain-media.sass';
 import MountainImg from './img/mountain.png';
-
+import GitHub from '../../../utility/img/github.svg';
 export default class Mountain extends React.Component {
 
     constructor(props) {
@@ -16,7 +16,6 @@ export default class Mountain extends React.Component {
         this.state = {
             left: '-100%',
             imgWidth: 0,
-            imgHeight: '0px',
             hovered: false
         }
     }
@@ -24,8 +23,6 @@ export default class Mountain extends React.Component {
     onLoad = () => {
 
         this.setState({ imgWidth: document.getElementById('mountain-img').clientWidth })
-        var height = document.getElementById('mountain-img').clientHeight;
-        this.setState({ imgHeight: height + 'px' })
 
         window.addEventListener('resize', this.updateOffset);
 
@@ -78,6 +75,16 @@ export default class Mountain extends React.Component {
             }
         })
 
+        gsap.fromTo('.mountain-github', { opacity: 0 }, {
+            opacity: 1,
+            scrollTrigger: {
+                trigger: '.mountain-img-container',
+                start: 'top 50%',
+                end: 'center 60%',
+                scrub: true
+            }
+        })
+
         gsap.fromTo('.mountain-text', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
@@ -116,10 +123,6 @@ export default class Mountain extends React.Component {
             })
         }
 
-        if (prevState.imgHeight !== this.state.imgHeight) {
-            gsap.to('#mountain-img', { x: this.state.left, duration: 0.3, paused: true });
-        }
-
         if (prevState.imgWidth !== this.state.imgWidth) {
             this.updateOffset();
         }
@@ -141,34 +144,48 @@ export default class Mountain extends React.Component {
         const imgStyle = hovered ? { transition: 'transform 0.3s ease-out', transform: 'translateX(' + left + ') scale(1.05)' } :
             { transform: 'translateX(' + left + ')' };
 
-        const height = this.state.imgHeight;
-        const titleStyle = { height: height };
-
         return (
             <div className='mountain-content' id='mountain-content'>
                 <div className='mountain-text'>
-                A procedurally generated mountain made with Fractional Brownian motion. Has adjustable fog and snow. Due to high polygon count
-                may struggle to run on lower-end devices. Created with JavaScript using WebGL.
+                A procedurally generated mountain made with Fractional Brownian motion. Has adjustable fog and snow. Due to high polygon count may struggle to run on lower-end devices. Created with JavaScript using WebGL.
                 </div>
-                <div className='mountain-img-container' id='mountain-img-container'>
-                    <img src={ MountainImg } id='mountain-img' alt='Mountain' style={imgStyle}
-                        onLoad={this.onLoad}
-                    />
-                </div>
-                <a href='https://robertolovece.github.io/Mountain/'
-                    target='_blank'
-                    rel='noreferrer'
-                    className='mountain-img-title-container'
-                    id='mountain-img-title-container'
-                    style={titleStyle}
+                <div
+                    className='mountain-img-container'
+                    id='mountain-img-container'
                     onMouseEnter={this.onMouseEnter}
                     onMouseLeave={this.onMouseLeave}
                 >
-                    <div className='mountain-img-title'>
-                        MOUNTAIN    
-                    </div>
-                    <div className='mountain-img-number'>
-                        02
+                    <a href='https://robertolovece.github.io/Mountain/'
+                        target='_blank'
+                        rel='noreferrer'>
+                        <img src={MountainImg} id='mountain-img' alt='Mountain' style={imgStyle}
+                            onLoad={this.onLoad}
+                        />
+                        <div className='mountain-img-number'>
+                            02
+                        </div>
+                    </a>
+                    <a
+                        className='github'
+                        href='https://github.com/RobertoLovece/Mountain'
+                        target='_blank'
+                        rel='noreferrer'
+                    >
+                        <GitHub 
+                            className='mountain-github' 
+                            onMouseEnter={this.onMouseLeave}
+                            onMouseLeave={this.onMouseEnter}
+                        />
+                    </a>
+                </div>
+                <a href='https://robertolovece.github.io/Mountain/'
+                    target='_blank'
+                    rel='noreferrer'>
+                    <div className='mountain-img-title'
+                        onMouseEnter={this.onMouseEnter}
+                        onMouseLeave={this.onMouseLeave}
+                    >
+                        MOUNTAIN
                     </div>
                 </a>
             </div>

@@ -123,10 +123,6 @@ export default class Universe extends React.Component {
             })
         }
 
-        if (prevState.imgHeight !== this.state.imgHeight) {
-            gsap.to('#universe-img', { x: this.state.left, duration: 0.3, paused: true });
-        }
-
         if (prevState.imgWidth !== this.state.imgWidth) {
             this.updateOffset();
         }

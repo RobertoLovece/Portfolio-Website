@@ -8,7 +8,7 @@
     display: grid
 
     grid-template-columns: 1.5fr 1fr
-    grid-auto-rows: 1fr max-content
+    grid-auto-rows: 1fr fit-content
 
     column-gap: 5rem
 
@@ -58,7 +58,6 @@
 
     justify-content: center
     align-items: center
-
     img
 
         transition: ease-out 0.3s
@@ -70,47 +69,53 @@
         margin-right: auto
         display: block
 
-.mountain-img-title-container
-
-    position: relative
-
-    width: 100%
-
-    margin: auto
+.mountain-img-title
 
     grid-column: 1/2
     grid-row: 1/3
 
-    font-size: 8vw
-    font-weight: 800
-    line-height: 0em
+    font-size: clamp(4vw + 3.5rem, 8vw, 9vw) !important
+    letter-spacing: 0.08em
 
-    .mountain-img-title
+    opacity: 0
 
-        font-size: clamp(4vw + 3.5rem, 8vw, 9vw) !important
-        letter-spacing: 0.08em
+    color: base.$primary-color
+    width: fit-content
 
-        opacity: 0
+    position: absolute
+    left: -1.5rem
+    top: 95%
 
-        color: base.$primary-color
-        width: fit-content
+.mountain-img-number
 
-        position: absolute
-        left: -1.5rem
-        top: 95%
+    opacity: 0
 
-    .mountain-img-number
+    color: base.$secondary-color
 
-        opacity: 0
-
-        color: base.$secondary-color
-
-        font-size: clamp(2vw + 2rem, 0.1rem + 4vw, 0.1rem + 4vw) !important
+    font-size: clamp(2vw + 2rem, 0.1rem + 4vw, 0.1rem + 4vw) !important
         // font-size: 4vw
 
-        width: fit-content
+    width: fit-content
 
-        position: absolute
-        top: 0.5em
-        right: 0.5rem
+    position: absolute
+    top: 0.5em
+    right: 0.2rem
 
+.mountain-github
+    z-index: 1
+
+    position: absolute
+
+    width: calc(1vw + 3rem)
+    height: calc(1vw + 3rem)
+
+    top: 0.5rem
+    left: 0.5rem
+
+    path
+        fill: black
+
+.mountain-github:hover
+
+    path
+        fill: #403d39

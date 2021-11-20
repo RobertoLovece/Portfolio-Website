@@ -162,7 +162,7 @@ export default class Cloth extends React.Component {
                             onLoad={this.onLoad}
                         />
                         <div className='cloth-img-number'>
-                            01
+                            03
                         </div>
                     </a>
                     <a

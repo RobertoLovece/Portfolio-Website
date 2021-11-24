@@ -4,11 +4,11 @@ import { Color } from 'three';
 import { gsap, ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
 
-import './universe.sass';
-import './universe-media.sass';
-import UniverseImg from './img/universe.png';
-import GitHub from '../../../utility/img/github.svg';
-export default class Universe extends React.Component {
+import './cloth.sass';
+import './cloth-media.sass';
+import ClothImg from '../img/cloth.png';
+import GitHub from '../img/github.svg';
+export default class Cloth extends React.Component {
 
     constructor(props) {
         super(props);
@@ -22,7 +22,7 @@ export default class Universe extends React.Component {
 
     onLoad = () => {
 
-        this.setState({ imgWidth: document.getElementById('universe-img').clientWidth })
+        this.setState({ imgWidth: document.getElementById('cloth-img').clientWidth })
 
         window.addEventListener('resize', this.updateOffset);
 
@@ -30,7 +30,7 @@ export default class Universe extends React.Component {
 
     updateOffset = () => {
 
-        var containerWidth = document.getElementById('universe-img-container').clientWidth;
+        var containerWidth = document.getElementById('cloth-img-container').clientWidth;
         var offset = ((this.state.imgWidth - containerWidth) / 2) * Number(containerWidth < this.state.imgWidth);
         this.setState({ left: '-' + offset + 'px' })
 
@@ -46,18 +46,18 @@ export default class Universe extends React.Component {
 
         gsap.timeline({
             scrollTrigger: {
-                trigger: '.universe-img-container',
+                trigger: '.cloth-img-container',
                 start: 'top 100%',
                 end: 'center 50%',
                 scrub: true
             }
-        }).to('.universe-img-container', { opacity: 1 }, 0)
+        }).to('.cloth-img-container', { opacity: 1 }, 0)
 
 
-        gsap.fromTo('.universe-img-title', { opacity: 0 }, {
+        gsap.fromTo('.cloth-img-title', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.universe-img-container',
+                trigger: '.cloth-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
@@ -65,30 +65,30 @@ export default class Universe extends React.Component {
 
         })
 
-        gsap.fromTo('.universe-img-number', { opacity: 0 }, {
+        gsap.fromTo('.cloth-img-number', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.universe-img-container',
+                trigger: '.cloth-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
             }
         })
 
-        gsap.fromTo('.universe-github', { opacity: 0 }, {
+        gsap.fromTo('.cloth-github', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.universe-img-container',
+                trigger: '.cloth-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
             }
         })
 
-        gsap.fromTo('.universe-text', { opacity: 0 }, {
+        gsap.fromTo('.cloth-text', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.universe-img-container',
+                trigger: '.cloth-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
@@ -107,7 +107,7 @@ export default class Universe extends React.Component {
 
         if (!this.props.isLoading && test) {
             ScrollTrigger.create({
-                trigger: document.getElementById('universe-content'),
+                trigger: document.getElementById('cloth-content'),
                 // markers: true,
                 start: 'top +20%',
 
@@ -145,47 +145,47 @@ export default class Universe extends React.Component {
             { transform: 'translateX(' + left + ')' };
 
         return (
-            <div className='universe-content' id='universe-content'>
-                <div className='universe-text'>
-                    My first main experiment with JavaScipt and WebGL. Takes advantage of the WebGL points feature for the outer particle ring.
+            <div className='cloth-content' id='cloth-content'>
+                <div className='cloth-text'>
+                A Verlet integration interactive cloth simulation created with JavaScript using WebGL. Click the screen to toggle gravity direction.
                 </div>
                 <div
-                    className='universe-img-container'
-                    id='universe-img-container'
+                    className='cloth-img-container'
+                    id='cloth-img-container'
                     onMouseEnter={this.onMouseEnter}
                     onMouseLeave={this.onMouseLeave}
                 >
-                    <a href='https://robertolovece.github.io/Universe/'
+                    <a href='https://robertolovece.github.io/Cloth/'
                         target='_blank'
                         rel='noreferrer'>
-                        <img src={UniverseImg} id='universe-img' alt='Universe' style={imgStyle}
+                        <img src={ClothImg} id='cloth-img' alt='Cloth' style={imgStyle}
                             onLoad={this.onLoad}
                         />
-                        <div className='universe-img-number'>
-                            01
+                        <div className='cloth-img-number'>
+                            03
                         </div>
                     </a>
                     <a
                         className='github'
-                        href='https://github.com/RobertoLovece/Universe'
+                        href='https://github.com/RobertoLovece/Cloth'
                         target='_blank'
                         rel='noreferrer'
                     >
                         <GitHub 
-                            className='universe-github' 
+                            className='cloth-github' 
                             onMouseEnter={this.onMouseLeave}
                             onMouseLeave={this.onMouseEnter}
                         />
                     </a>
                 </div>
-                <a href='https://robertolovece.github.io/Universe/'
+                <a href='https://robertolovece.github.io/Cloth/'
                     target='_blank'
                     rel='noreferrer'>
-                    <div className='universe-img-title'
+                    <div className='cloth-img-title'
                         onMouseEnter={this.onMouseEnter}
                         onMouseLeave={this.onMouseLeave}
                     >
-                        UNIVERSE
+                        CLOTH
                     </div>
                 </a>
             </div>

@@ -61,6 +61,7 @@ export default class App extends React.Component {
         // OnLoad Event-Listener
         window.addEventListener('load', this.onLoad.bind(this));
         this.start();
+
     }
 
     componentWillUnmount() {

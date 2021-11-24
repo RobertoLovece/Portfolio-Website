@@ -4,14 +4,11 @@ import { Color } from 'three';
 import { gsap, ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
 
-import './grid.sass';
-import './grid-media.sass';
-
-import GridImg0 from './img/rope-grid-big.png';
-import GridImg1 from './img/rope-grid-small.png';
-
-import GitHub from '../../../utility/img/github.svg';
-export default class Grid extends React.Component {
+import './universe.sass';
+import './universe-media.sass';
+import UniverseImg from '../img/universe.png';
+import GitHub from '../img/github.svg';
+export default class Universe extends React.Component {
 
     constructor(props) {
         super(props);
@@ -19,19 +16,13 @@ export default class Grid extends React.Component {
         this.state = {
             left: '-100%',
             imgWidth: 0,
-            hovered: false,
-            imgNumber: 0
+            hovered: false
         }
-
-        this.images = [
-            GridImg0,
-            GridImg1
-        ]
     }
 
     onLoad = () => {
 
-        this.setState({ imgWidth: document.getElementById('grid-img').clientWidth })
+        this.setState({ imgWidth: document.getElementById('universe-img').clientWidth })
 
         window.addEventListener('resize', this.updateOffset);
 
@@ -39,15 +30,9 @@ export default class Grid extends React.Component {
 
     updateOffset = () => {
 
-        var containerWidth = document.getElementById('grid-img-container').clientWidth;
+        var containerWidth = document.getElementById('universe-img-container').clientWidth;
         var offset = ((this.state.imgWidth - containerWidth) / 2) * Number(containerWidth < this.state.imgWidth);
         this.setState({ left: '-' + offset + 'px' })
-
-        if (containerWidth <= 900) {
-            this.setState({ imgNumber: 1 })
-        } else {
-            this.setState({ imgNumber: 0 })
-        }
 
     };
 
@@ -61,18 +46,18 @@ export default class Grid extends React.Component {
 
         gsap.timeline({
             scrollTrigger: {
-                trigger: '.grid-img-container',
+                trigger: '.universe-img-container',
                 start: 'top 100%',
                 end: 'center 50%',
                 scrub: true
             }
-        }).to('.grid-img-container', { opacity: 1 }, 0)
+        }).to('.universe-img-container', { opacity: 1 }, 0)
 
 
-        gsap.fromTo('.grid-img-title', { opacity: 0 }, {
+        gsap.fromTo('.universe-img-title', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.grid-img-container',
+                trigger: '.universe-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
@@ -80,30 +65,30 @@ export default class Grid extends React.Component {
 
         })
 
-        gsap.fromTo('.grid-img-number', { opacity: 0 }, {
+        gsap.fromTo('.universe-img-number', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.grid-img-container',
+                trigger: '.universe-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
             }
         })
 
-        gsap.fromTo('.grid-github', { opacity: 0 }, {
+        gsap.fromTo('.universe-github', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.grid-img-container',
+                trigger: '.universe-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
             }
         })
 
-        gsap.fromTo('.grid-text', { opacity: 0 }, {
+        gsap.fromTo('.universe-text', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.grid-img-container',
+                trigger: '.universe-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
@@ -122,7 +107,7 @@ export default class Grid extends React.Component {
 
         if (!this.props.isLoading && test) {
             ScrollTrigger.create({
-                trigger: document.getElementById('grid-content'),
+                trigger: document.getElementById('universe-content'),
                 // markers: true,
                 start: 'top +20%',
 
@@ -160,47 +145,47 @@ export default class Grid extends React.Component {
             { transform: 'translateX(' + left + ')' };
 
         return (
-            <div className='grid-content' id='grid-content'>
-                <div className='grid-text'>
-                    An interactive Verlet integration rope-like grid created with JavaScript using WebGL. Drag the mouse/pointer across the screen to cut ropes. Click onto a point to toggle whether it's locked or not.
+            <div className='universe-content' id='universe-content'>
+                <div className='universe-text'>
+                    My first main experiment with JavaScipt and WebGL. Takes advantage of the WebGL points feature for the outer particle ring.
                 </div>
                 <div
-                    className='grid-img-container'
-                    id='grid-img-container'
+                    className='universe-img-container'
+                    id='universe-img-container'
                     onMouseEnter={this.onMouseEnter}
                     onMouseLeave={this.onMouseLeave}
                 >
-                    <a href='https://robertolovece.github.io/Rope-Grid/'
+                    <a href='https://robertolovece.github.io/Universe/'
                         target='_blank'
                         rel='noreferrer'>
-                        <img src={this.images[this.state.imgNumber]} id='grid-img' alt='Rope-Grid' style={imgStyle}
+                        <img src={UniverseImg} id='universe-img' alt='Universe' style={imgStyle}
                             onLoad={this.onLoad}
                         />
-                        <div className='grid-img-number'>
-                            04
+                        <div className='universe-img-number'>
+                            01
                         </div>
                     </a>
                     <a
                         className='github'
-                        href='https://github.com/RobertoLovece/Rope-Grid'
+                        href='https://github.com/RobertoLovece/Universe'
                         target='_blank'
                         rel='noreferrer'
                     >
-                        <GitHub
-                            className='grid-github'
+                        <GitHub 
+                            className='universe-github' 
                             onMouseEnter={this.onMouseLeave}
                             onMouseLeave={this.onMouseEnter}
                         />
                     </a>
                 </div>
-                <a href='https://robertolovece.github.io/Rope-Grid/'
+                <a href='https://robertolovece.github.io/Universe/'
                     target='_blank'
                     rel='noreferrer'>
-                    <div className='grid-img-title'
+                    <div className='universe-img-title'
                         onMouseEnter={this.onMouseEnter}
                         onMouseLeave={this.onMouseLeave}
                     >
-                        ROPEGRID
+                        UNIVERSE
                     </div>
                 </a>
             </div>

@@ -4,11 +4,14 @@ import { Color } from 'three';
 import { gsap, ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
 
-import './mountain.sass';
-import './mountain-media.sass';
-import MountainImg from './img/mountain.png';
-import GitHub from '../../../utility/img/github.svg';
-export default class Mountain extends React.Component {
+import './grid.sass';
+import './grid-media.sass';
+
+import GridImg0 from '../img/rope-grid-big.png';
+import GridImg1 from '../img/rope-grid-small.png';
+
+import GitHub from '../img/github.svg';
+export default class Grid extends React.Component {
 
     constructor(props) {
         super(props);
@@ -16,13 +19,19 @@ export default class Mountain extends React.Component {
         this.state = {
             left: '-100%',
             imgWidth: 0,
-            hovered: false
+            hovered: false,
+            imgNumber: 0
         }
+
+        this.images = [
+            GridImg0,
+            GridImg1
+        ]
     }
 
     onLoad = () => {
 
-        this.setState({ imgWidth: document.getElementById('mountain-img').clientWidth })
+        this.setState({ imgWidth: document.getElementById('grid-img').clientWidth })
 
         window.addEventListener('resize', this.updateOffset);
 
@@ -30,9 +39,15 @@ export default class Mountain extends React.Component {
 
     updateOffset = () => {
 
-        var containerWidth = document.getElementById('mountain-img-container').clientWidth;
+        var containerWidth = document.getElementById('grid-img-container').clientWidth;
         var offset = ((this.state.imgWidth - containerWidth) / 2) * Number(containerWidth < this.state.imgWidth);
         this.setState({ left: '-' + offset + 'px' })
+
+        if (containerWidth <= 900) {
+            this.setState({ imgNumber: 1 })
+        } else {
+            this.setState({ imgNumber: 0 })
+        }
 
     };
 
@@ -46,18 +61,18 @@ export default class Mountain extends React.Component {
 
         gsap.timeline({
             scrollTrigger: {
-                trigger: '.mountain-img-container',
+                trigger: '.grid-img-container',
                 start: 'top 100%',
                 end: 'center 50%',
                 scrub: true
             }
-        }).to('.mountain-img-container', { opacity: 1 }, 0)
+        }).to('.grid-img-container', { opacity: 1 }, 0)
 
 
-        gsap.fromTo('.mountain-img-title', { opacity: 0 }, {
+        gsap.fromTo('.grid-img-title', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.mountain-img-container',
+                trigger: '.grid-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
@@ -65,30 +80,30 @@ export default class Mountain extends React.Component {
 
         })
 
-        gsap.fromTo('.mountain-img-number', { opacity: 0 }, {
+        gsap.fromTo('.grid-img-number', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.mountain-img-container',
+                trigger: '.grid-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
             }
         })
 
-        gsap.fromTo('.mountain-github', { opacity: 0 }, {
+        gsap.fromTo('.grid-github', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.mountain-img-container',
+                trigger: '.grid-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
             }
         })
 
-        gsap.fromTo('.mountain-text', { opacity: 0 }, {
+        gsap.fromTo('.grid-text', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.mountain-img-container',
+                trigger: '.grid-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
@@ -107,7 +122,7 @@ export default class Mountain extends React.Component {
 
         if (!this.props.isLoading && test) {
             ScrollTrigger.create({
-                trigger: document.getElementById('mountain-content'),
+                trigger: document.getElementById('grid-content'),
                 // markers: true,
                 start: 'top +20%',
 
@@ -145,47 +160,47 @@ export default class Mountain extends React.Component {
             { transform: 'translateX(' + left + ')' };
 
         return (
-            <div className='mountain-content' id='mountain-content'>
-                <div className='mountain-text'>
-                A procedurally generated mountain made with Fractional Brownian motion. Has adjustable fog and snow. Due to high polygon count may struggle to run on lower-end devices. Created with JavaScript using WebGL.
+            <div className='grid-content' id='grid-content'>
+                <div className='grid-text'>
+                    An interactive Verlet integration rope-like grid created with JavaScript using WebGL. Drag the mouse/pointer across the screen to cut ropes. Click onto a point to toggle whether it's locked or not.
                 </div>
                 <div
-                    className='mountain-img-container'
-                    id='mountain-img-container'
+                    className='grid-img-container'
+                    id='grid-img-container'
                     onMouseEnter={this.onMouseEnter}
                     onMouseLeave={this.onMouseLeave}
                 >
-                    <a href='https://robertolovece.github.io/Mountain/'
+                    <a href='https://robertolovece.github.io/Rope-Grid/'
                         target='_blank'
                         rel='noreferrer'>
-                        <img src={MountainImg} id='mountain-img' alt='Mountain' style={imgStyle}
+                        <img src={this.images[this.state.imgNumber]} id='grid-img' alt='Rope-Grid' style={imgStyle}
                             onLoad={this.onLoad}
                         />
-                        <div className='mountain-img-number'>
-                            02
+                        <div className='grid-img-number'>
+                            04
                         </div>
                     </a>
                     <a
                         className='github'
-                        href='https://github.com/RobertoLovece/Mountain'
+                        href='https://github.com/RobertoLovece/Rope-Grid'
                         target='_blank'
                         rel='noreferrer'
                     >
-                        <GitHub 
-                            className='mountain-github' 
+                        <GitHub
+                            className='grid-github'
                             onMouseEnter={this.onMouseLeave}
                             onMouseLeave={this.onMouseEnter}
                         />
                     </a>
                 </div>
-                <a href='https://robertolovece.github.io/Mountain/'
+                <a href='https://robertolovece.github.io/Rope-Grid/'
                     target='_blank'
                     rel='noreferrer'>
-                    <div className='mountain-img-title'
+                    <div className='grid-img-title'
                         onMouseEnter={this.onMouseEnter}
                         onMouseLeave={this.onMouseLeave}
                     >
-                        MOUNTAIN
+                        ROPEGRID
                     </div>
                 </a>
             </div>

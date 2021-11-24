@@ -2,12 +2,12 @@ import React from 'react';
 
 import './main.sass';
 
-import {HomePage} from './pages/homepage/homepage.js';
+import {HomePage} from './homepage/homepage.js';
 
-import Universe from './pages/universe/universe.js';
-import Mountain from './pages/mountain/mountain.js';
-import Cloth from './pages/cloth/cloth.js';
-import Grid from './pages/grid/grid.js';
+import Universe from './projects/universe/universe.js';
+import Mountain from './projects/mountain/mountain.js';
+import Cloth from './projects/cloth/cloth.js';
+import Grid from './projects//grid/grid.js';
 
 export function Main(props) {
     return (
@@ -45,7 +45,7 @@ export function Main(props) {
                     bloomPass = { props.bloomPass }
                 />
             </div>
-            {/* <div className='bottom' /> */}
+            <div className='contact' /> 
         </>
 
     );

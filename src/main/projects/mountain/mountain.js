@@ -4,11 +4,11 @@ import { Color } from 'three';
 import { gsap, ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
 
-import './cloth.sass';
-import './cloth-media.sass';
-import ClothImg from './img/cloth.png';
-import GitHub from '../../../utility/img/github.svg';
-export default class Cloth extends React.Component {
+import './mountain.sass';
+import './mountain-media.sass';
+import MountainImg from '../img/mountain.png';
+import GitHub from '../img/github.svg';
+export default class Mountain extends React.Component {
 
     constructor(props) {
         super(props);
@@ -22,7 +22,7 @@ export default class Cloth extends React.Component {
 
     onLoad = () => {
 
-        this.setState({ imgWidth: document.getElementById('cloth-img').clientWidth })
+        this.setState({ imgWidth: document.getElementById('mountain-img').clientWidth })
 
         window.addEventListener('resize', this.updateOffset);
 
@@ -30,7 +30,7 @@ export default class Cloth extends React.Component {
 
     updateOffset = () => {
 
-        var containerWidth = document.getElementById('cloth-img-container').clientWidth;
+        var containerWidth = document.getElementById('mountain-img-container').clientWidth;
         var offset = ((this.state.imgWidth - containerWidth) / 2) * Number(containerWidth < this.state.imgWidth);
         this.setState({ left: '-' + offset + 'px' })
 
@@ -46,18 +46,18 @@ export default class Cloth extends React.Component {
 
         gsap.timeline({
             scrollTrigger: {
-                trigger: '.cloth-img-container',
+                trigger: '.mountain-img-container',
                 start: 'top 100%',
                 end: 'center 50%',
                 scrub: true
             }
-        }).to('.cloth-img-container', { opacity: 1 }, 0)
+        }).to('.mountain-img-container', { opacity: 1 }, 0)
 
 
-        gsap.fromTo('.cloth-img-title', { opacity: 0 }, {
+        gsap.fromTo('.mountain-img-title', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.cloth-img-container',
+                trigger: '.mountain-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
@@ -65,30 +65,30 @@ export default class Cloth extends React.Component {
 
         })
 
-        gsap.fromTo('.cloth-img-number', { opacity: 0 }, {
+        gsap.fromTo('.mountain-img-number', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.cloth-img-container',
+                trigger: '.mountain-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
             }
         })
 
-        gsap.fromTo('.cloth-github', { opacity: 0 }, {
+        gsap.fromTo('.mountain-github', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.cloth-img-container',
+                trigger: '.mountain-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
             }
         })
 
-        gsap.fromTo('.cloth-text', { opacity: 0 }, {
+        gsap.fromTo('.mountain-text', { opacity: 0 }, {
             opacity: 1,
             scrollTrigger: {
-                trigger: '.cloth-img-container',
+                trigger: '.mountain-img-container',
                 start: 'top 50%',
                 end: 'center 60%',
                 scrub: true
@@ -107,7 +107,7 @@ export default class Cloth extends React.Component {
 
         if (!this.props.isLoading && test) {
             ScrollTrigger.create({
-                trigger: document.getElementById('cloth-content'),
+                trigger: document.getElementById('mountain-content'),
                 // markers: true,
                 start: 'top +20%',
 
@@ -145,47 +145,47 @@ export default class Cloth extends React.Component {
             { transform: 'translateX(' + left + ')' };
 
         return (
-            <div className='cloth-content' id='cloth-content'>
-                <div className='cloth-text'>
-                A Verlet integration interactive cloth simulation created with JavaScript using WebGL. Click the screen to toggle gravity direction.
+            <div className='mountain-content' id='mountain-content'>
+                <div className='mountain-text'>
+                A procedurally generated mountain made with Fractional Brownian motion. Has adjustable fog and snow. Due to high polygon count may struggle to run on lower-end devices. Created with JavaScript using WebGL.
                 </div>
                 <div
-                    className='cloth-img-container'
-                    id='cloth-img-container'
+                    className='mountain-img-container'
+                    id='mountain-img-container'
                     onMouseEnter={this.onMouseEnter}
                     onMouseLeave={this.onMouseLeave}
                 >
-                    <a href='https://robertolovece.github.io/Cloth/'
+                    <a href='https://robertolovece.github.io/Mountain/'
                         target='_blank'
                         rel='noreferrer'>
-                        <img src={ClothImg} id='cloth-img' alt='Cloth' style={imgStyle}
+                        <img src={MountainImg} id='mountain-img' alt='Mountain' style={imgStyle}
                             onLoad={this.onLoad}
                         />
-                        <div className='cloth-img-number'>
-                            03
+                        <div className='mountain-img-number'>
+                            02
                         </div>
                     </a>
                     <a
                         className='github'
-                        href='https://github.com/RobertoLovece/Cloth'
+                        href='https://github.com/RobertoLovece/Mountain'
                         target='_blank'
                         rel='noreferrer'
                     >
                         <GitHub 
-                            className='cloth-github' 
+                            className='mountain-github' 
                             onMouseEnter={this.onMouseLeave}
                             onMouseLeave={this.onMouseEnter}
                         />
                     </a>
                 </div>
-                <a href='https://robertolovece.github.io/Cloth/'
+                <a href='https://robertolovece.github.io/Mountain/'
                     target='_blank'
                     rel='noreferrer'>
-                    <div className='cloth-img-title'
+                    <div className='mountain-img-title'
                         onMouseEnter={this.onMouseEnter}
                         onMouseLeave={this.onMouseLeave}
                     >
-                        CLOTH
+                        MOUNTAIN
                     </div>
                 </a>
             </div>

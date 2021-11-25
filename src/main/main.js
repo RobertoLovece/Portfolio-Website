@@ -1,13 +1,23 @@
 import React from 'react';
 
-import './main.sass';
+//
 
 import {HomePage} from './homepage/homepage.js';
+
+// Projects
 
 import Universe from './projects/universe/universe.js';
 import Mountain from './projects/mountain/mountain.js';
 import Cloth from './projects/cloth/cloth.js';
 import Grid from './projects//grid/grid.js';
+
+//
+
+import Contact from './contact/contact.js';
+
+//
+
+import './main.sass';
 
 export function Main(props) {
     return (
@@ -45,7 +55,11 @@ export function Main(props) {
                     bloomPass = { props.bloomPass }
                 />
             </div>
-            <div className='contact' /> 
+            <div className='contact'> 
+                <Contact>
+                    
+                </Contact>
+            </div>
         </>
 
     );

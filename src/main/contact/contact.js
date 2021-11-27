@@ -4,7 +4,7 @@ import { gsap, ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
 
 import './contact.sass';
-// import './contact-media.sass';
+import './contact-media.sass';
 
 export default class Contact extends React.Component {
 
@@ -27,12 +27,14 @@ export default class Contact extends React.Component {
                 <div className='contact-content'>
                     <div className='contact-text contact-title'>CONTACT</div>
                     <div className='contact-text contact-title contact-title-bottom'>INFORMATION</div>
-                    <div className='contact-text contact-subtitle contact-tag-line'>If you're looking for a developer who is... </div>
-                    <div className='contact-text contact-subtitle contact-descriptor'>CREATIVE</div>
-                    <div className='contact-text contact-subtitle contact-descriptor'>DEDICATED</div>
-                    <div className='contact-text contact-subtitle contact-descriptor'>FAST-LEARNING</div>
+                    <div className='contact-text contact-subtitle contact-tag-line'>If you're looking for a <b>developer</b> who is... </div>
+                    <ul className='contact-descriptor-container'>
+                        <li className='contact-text contact-subtitle contact-descriptor'>FAST-LEARNING</li>
+                        <li className='contact-text contact-subtitle contact-descriptor'>DEDICATED</li>
+                        <li className='contact-text contact-subtitle contact-descriptor'>CREATIVE</li>
+                    </ul>
                     <div className='contact-detail-container'>
-                        <div className='contact-text contact-subtitle contact-email'>
+                        <div className='contact-text contact-title contact-email'>
                             <a
                                 className='contact-underline'
                                 href='mailto: rlovece@hotmail.co.uk'
@@ -42,7 +44,7 @@ export default class Contact extends React.Component {
                                 rlovece@hotmail.co.uk
                             </a>
                         </div>
-                        <div className='contact-text contact-subtitle contact-number'>
+                        <div className='contact-text contact-title contact-number'>
                             <a
                                 className='contact-underline'
                                 href='tel:+447722438346'
@@ -53,6 +55,7 @@ export default class Contact extends React.Component {
                             </a>
                         </div>
                     </div>
+
                 </div>
             </div>
         );

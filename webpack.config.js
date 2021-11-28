@@ -74,6 +74,10 @@ module.exports = function (_env, argv) {
 						loader: 'babel-loader',
 					}
 				},
+				{
+					test: /\.obj$/,
+					loader: 'url-loader',
+				},
 			],
 		},
 	}

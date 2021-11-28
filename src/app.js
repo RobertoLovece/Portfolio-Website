@@ -1,5 +1,6 @@
 // react
 import React from 'react';
+import {Clock} from 'three';
 
 // gsap
 import { gsap, ScrollTrigger } from 'gsap/all';
@@ -11,12 +12,14 @@ import { Main } from './main/main.js';
 // WebGL 
 import { initScene } from './webgl/render/scene.js';
 import { initPostProcessing } from './webgl/render/post-processing.js';
-import { initEclipse, initAtmosphere, initStars, initOrbit } from './webgl/objects/objects.js';
+import { initSkull, initEclipse, initAtmosphere, initStars, initOrbit } from './webgl/objects/objects.js';
 import { initGUI } from './webgl/gui/GUI.js';
 
 // css / sass
 import './app.sass';
 import './utility/styling/scrollbar.sass';
+
+let clock = new Clock();
 
 export default class App extends React.Component {
 
@@ -45,6 +48,7 @@ export default class App extends React.Component {
         [this.composer, this.bloomPass, this.filmPass] = initPostProcessing(this.renderer, this.scene, this.camera);
 
         // objects
+        initSkull(this.scene);
         this.eclipse = initEclipse(this.scene);
         this.atmosphere = initAtmosphere(this.scene);
         this.stars = initStars(this.scene);
@@ -60,7 +64,6 @@ export default class App extends React.Component {
 
         // OnLoad Event-Listener
         window.addEventListener('load', this.onLoad.bind(this));
-        this.start();
 
     }
 
@@ -73,6 +76,10 @@ export default class App extends React.Component {
 
     // Handle page load
     onLoad() {
+
+        this.skull = this.scene.children[4];
+
+        this.start();
         this.onWindowResize();
         this.setState({ isLoading: false });
     }
@@ -94,15 +101,19 @@ export default class App extends React.Component {
     // WebGL animate and render
     animate() {
 
+        var delta = clock.getDelta();
+
+        this.skull.update(delta);
+
         var damp = 0.008;
         this.stars.rotation.y += -.1 * damp;
 
-        this.renderScene()
+        this.renderScene(delta)
         this.frameId = window.requestAnimationFrame(this.animate)
     }
 
-    renderScene() {
-        this.composer.render(this.scene, this.camera)
+    renderScene(delta) {
+        this.composer.render(delta)
     }
 
     //

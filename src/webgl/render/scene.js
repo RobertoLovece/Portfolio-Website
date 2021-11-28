@@ -25,6 +25,8 @@ export function initScene(container) {
     camera.lookAt(0, 0, 0)
 
     container.appendChild(renderer.domElement);
+    // console.log(renderer.domElement)
+    // renderer.domElement.getContext('canvas').getExtension('OES_standard_derivatives');
 
     return [renderer, scene, camera];
 

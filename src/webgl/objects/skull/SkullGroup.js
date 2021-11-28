@@ -20,9 +20,6 @@ export default class SkullGroup extends THREE.Group {
 
 	update(time) {
 
-		// this.skull.rotation.set(0, 70, 0);
-
-		// update children.
 		this.skull.update(time);
 
 	}

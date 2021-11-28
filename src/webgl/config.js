@@ -1,6 +1,6 @@
 
 export const BLOOMPARAMS = {
-    bloomStrength: 2.0,
+    bloomStrength: 0.5,
     bloomThreshold: 0.0,
     bloomRadius: 0.1,
 }

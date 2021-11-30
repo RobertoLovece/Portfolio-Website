@@ -38,7 +38,8 @@ export default class Skull extends THREE.Group {
 		this.setScale(0.11, 0.11, 0.11);
 		this.rotation.set(0, 75 * (Math.PI/180), 10 * (Math.PI/180));
 
-		this.position.set(1.5, -3.4, -0.3);
+		// this.position.set(1.5, -3.4, -0.3);
+		this.position.set(1.5, -30, -0.3);
 
 	}
 

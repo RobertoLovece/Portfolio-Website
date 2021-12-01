@@ -18,12 +18,10 @@ void main(void) {
   // coordinate transformation
   vec4 mPosition = modelMatrix * vec4(position + normal * renderOutline * 0.5, 1.0);
 
-  float angleToCamera = acos(dot(normalize(cameraPosition), normalize(mPosition.xyz)));
-
   vPosition = mPosition.xyz;
   vUv = uv;
   // white outline
-  // vColor = vec3(smoothstep(0.8, 1.0, abs(sin(angleToCamera))));
+  // vColor = vec3(smoothstep(0.99, 1.0, abs(sin(angleToCamera))));
 
   gl_Position = projectionMatrix * viewMatrix * mPosition;
 }

@@ -7,7 +7,7 @@ import eclipseFragment from './shader/eclipseFragment.glsl';
 import atmosphereVertex from './shader/atmosphereVertex.glsl';
 import atmosphereFragment from './shader/atmosphereFragment.glsl';
 
-import SkullGroup from './skull/SkullGroup.js';
+import Skull from './skull/Skull.js';
 import Stars from './stars/stars.js'
 
 //
@@ -24,7 +24,8 @@ const texLoader = new THREE.TextureLoader();
 
 export async function initSkull(scene) {
 
-    const skullGroup = new SkullGroup();
+    let skull = null;
+    const scale = 0.13;
 
     await Promise.all([
         objLoader.loadAsync(SkullModel),
@@ -38,9 +39,15 @@ export async function initSkull(scene) {
         noiseTex.wrapS = THREE.RepeatWrapping;
         noiseTex.wrapT = THREE.RepeatWrapping;
 
-        skullGroup.start(geometrySkullHead, geometrySkullJaw, noiseTex);
+        skull = new Skull(geometrySkullHead, geometrySkullJaw)
+		skull.start(noiseTex);
 
-        scene.add(skullGroup);
+        skull.scale.set(scale, scale, scale);
+        skull.position.set(1.5, -6, -0.5);
+        
+        skull.rotation.set(0, 80 * (Math.PI/180), 5 * (Math.PI/180));
+
+        scene.add(skull);
 
     });
 }

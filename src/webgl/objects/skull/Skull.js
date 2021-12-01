@@ -32,14 +32,14 @@ export default class Skull extends THREE.Group {
 		this.head = new THREE.Mesh(geometry1, this.material);
 		this.jaw = new THREE.Mesh(geometry2, this.material);
 
+		// this.rotation.set(
+		// 	MathEx.radians(0),
+		// 	MathEx.radians(-10),
+		// 	MathEx.radians(-15)
+		// );
+
 		this.add(this.head);
 		this.add(this.jaw);
-
-		this.setScale(0.11, 0.11, 0.11);
-		this.rotation.set(0, 75 * (Math.PI/180), 10 * (Math.PI/180));
-
-		// this.position.set(1.5, -3.4, -0.3);
-		this.position.set(1.5, -30, -0.3);
 
 	}
 
@@ -49,25 +49,10 @@ export default class Skull extends THREE.Group {
 
 	update(time) {
 		this.material.uniforms.time.value += time;
-		var speedMultiplier = 1;
+		var speedMultiplier = 2;
 
 		// rotation of the skull jaw default 8
 		this.head.rotation.set(MathEx.radians(-(Math.sin(this.material.uniforms.time.value * speedMultiplier) * 0.7 + 0.7) * 2), 0, 0);
 		this.jaw.rotation.set(MathEx.radians((Math.sin(this.material.uniforms.time.value * speedMultiplier) * 0.7 + 0.7) * 2), 0, 0);
-	}
-
-	setScale(x, y, z) {
-		this.head.scale.set(x, y, z);
-		this.jaw.scale.set(x, y, z);
-	}
-
-	setPosition(x, y, z) {
-		this.head.position.set(x, y, z);
-		this.jaw.position.set(x, y, z);
-	}
-
-	degreesToRadians(degrees) {
-		var pi = Math.PI;
-		return degrees * (pi / 180);
 	}
 }

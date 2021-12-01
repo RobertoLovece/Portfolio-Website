@@ -135,6 +135,7 @@ export default class App extends React.Component {
                         atmosphere={this.atmosphere}
                         scene={this.scene}
                         bloomPass={this.bloomPass}
+                        skull = {this.skull}
                     />
                 </div>
 

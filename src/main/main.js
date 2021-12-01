@@ -13,7 +13,7 @@ import Grid from './projects//grid/grid.js';
 
 //
 
-import Contact from './contact/contact.js';
+import {Contact} from './contact/contact.js';
 
 //
 
@@ -56,9 +56,10 @@ export function Main(props) {
                 />
             </div>
             <div className='contact'> 
-                <Contact>
-                    
-                </Contact>
+                <Contact
+                    isLoading = { props.isLoading }
+                    skull = { props.skull }
+                />
             </div>
         </>
 

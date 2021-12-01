@@ -44,8 +44,8 @@ export function HomePage(props) {
                 opacity: 0,
                 scrollTrigger: {
                     trigger: '.homepage-grid',
-                    start: 'center 45%',
-                    end: 'bottom 50%',
+                    start: 'center 50%',
+                    end: 'bottom 70%',
                     scrub: true
                 }
     

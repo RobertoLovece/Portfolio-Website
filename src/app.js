@@ -1,6 +1,6 @@
 // react
 import React from 'react';
-import { Clock } from 'three';
+import { LoadingManager, Clock } from 'three';
 
 // gsap
 import { gsap, ScrollTrigger } from 'gsap/all';
@@ -28,11 +28,14 @@ export default class App extends React.Component {
 
         this.state = {
             isLoading: true,
+            showLoad: false
         }
 
         this.start = this.start.bind(this)
         this.stop = this.stop.bind(this)
         this.animate = this.animate.bind(this)
+
+        this.manager = new LoadingManager();
 
     }
 
@@ -48,7 +51,9 @@ export default class App extends React.Component {
         [this.composer, this.bloomPass, this.filmPass] = initPostProcessing(this.renderer, this.scene, this.camera);
 
         // objects
-        initSkull(this.scene);
+        initSkull(this.scene, this.manager);
+        this.manager.onLoad = this.managerLoad.bind(this);
+
         this.eclipse = initEclipse(this.scene);
         this.atmosphere = initAtmosphere(this.scene);
         this.stars = initStars(this.scene);
@@ -63,7 +68,7 @@ export default class App extends React.Component {
         window.addEventListener('mousemove', this.onMouseMove.bind(this))
 
         // OnLoad Event-Listener
-        window.addEventListener('load', this.onLoad.bind(this));
+        window.addEventListener('load', this.eventLoad.bind(this));
         this.onWindowResize();
 
     }
@@ -72,20 +77,46 @@ export default class App extends React.Component {
         this.stop()
         this.mount.removeChild(this.renderer.domElement)
     }
+    
+    //
+
+    managerLoad() {
+        console.log('manager')
+        if (this.state.showLoad === true) {
+            this.onLoad();
+        } else {
+            this.setState({ showLoad: true });
+        }
+    }
+
+    //
+
+    eventLoad() {
+        console.log('event')
+        if (this.state.showLoad === true) {
+            this.onLoad();
+        } else {
+            this.setState({ showLoad: true });
+        }
+    }
 
     //
 
     // Handle page load
     onLoad() {
-        this.skull = this.scene.children[4];
-
-        this.onWindowResize();
-        this.start();
+        console.log('loading')
 
         const timer = setTimeout(() => {
-            document.body.style.overflow = 'overlay';
+
+            this.skull = this.scene.children[4];
+            this.onWindowResize();
+            this.start();
+
+            document.body.style.overflowY = 'auto';
+            document.body.style.overflowY = 'overlay';
+            
             this.setState({ isLoading: false });
-        }, 3000);
+        }, 1000);
         return () => clearTimeout(timer);
     }
 

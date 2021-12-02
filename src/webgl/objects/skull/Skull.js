@@ -9,6 +9,8 @@ export default class Skull extends THREE.Group {
 		// Create Object3D
 		super();
 
+		this.name = 'skull';
+
 		// Define Material
 		this.material = new THREE.RawShaderMaterial({
 			uniforms: {

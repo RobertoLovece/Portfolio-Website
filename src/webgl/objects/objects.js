@@ -17,12 +17,10 @@ import NoiseTexture from './skull/assets/noise.png'
 
 //
 
-const objLoader = new OBJLoader();
-const texLoader = new THREE.TextureLoader();
+export async function initSkull(scene, manager) {
 
-//
-
-export async function initSkull(scene) {
+    const objLoader = new OBJLoader(manager);
+    const texLoader = new THREE.TextureLoader(manager);
 
     let skull = null;
     const scale = 0.13;

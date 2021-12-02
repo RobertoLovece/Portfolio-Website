@@ -17,7 +17,6 @@ export function Contact(props) {
                 ease: 'out',
                 scrollTrigger:
                 {
-                    markers: true,
                     trigger: container,
                     start: 'top 80%',
                     end: 'center 50%',

@@ -7,6 +7,7 @@ import { gsap, ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
 
 // react components
+import { Loader } from './main/loader.js';
 import { Main } from './main/main.js';
 
 // WebGL 
@@ -77,7 +78,7 @@ export default class App extends React.Component {
         this.stop()
         this.mount.removeChild(this.renderer.domElement)
     }
-    
+
     //
 
     managerLoad() {
@@ -114,7 +115,7 @@ export default class App extends React.Component {
 
             document.body.style.overflowY = 'auto';
             document.body.style.overflowY = 'overlay';
-            
+
             this.setState({ isLoading: false });
         }, 1000);
         return () => clearTimeout(timer);
@@ -165,9 +166,9 @@ export default class App extends React.Component {
                 />
 
                 {this.state.isLoading === true ? (
-                    <div className='loader'></div>
+                    <Loader/>
                 ) : (
-                    null
+                    <div/>
                 )}
 
                 <div className='main'>

@@ -20,13 +20,12 @@ export function initScene(container) {
     scene.background = new Color(0x000);
 
     camera.position.x = 2.80;
+    // camera.position.x = 5;
     camera.position.y = 0.5;
     camera.position.z = 0;
     camera.lookAt(0, 0, 0)
 
     container.appendChild(renderer.domElement);
-    // console.log(renderer.domElement)
-    // renderer.domElement.getContext('canvas').getExtension('OES_standard_derivatives');
 
     return [renderer, scene, camera];
 

@@ -26,6 +26,8 @@ export default class Mountain extends React.Component {
 
         window.addEventListener('resize', this.updateOffset);
 
+        this.updateOffset();
+
     }
 
     updateOffset = () => {

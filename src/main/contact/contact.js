@@ -14,9 +14,10 @@ export function Contact(props) {
 
             gsap.to(props.skull.position, {
                 y: -3.4,
-                ease: 'none',
+                ease: 'out',
                 scrollTrigger:
                 {
+                    markers: true,
                     trigger: container,
                     start: 'top 80%',
                     end: 'center 50%',
@@ -26,6 +27,7 @@ export function Contact(props) {
 
             var timeline = gsap.timeline();
             timeline.fromTo('.contact-content', { opacity: 0 }, {
+                ease: 'in',
                 opacity: 1,
                 scrollTrigger: {
                     trigger: container,

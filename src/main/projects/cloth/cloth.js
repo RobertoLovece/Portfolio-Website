@@ -23,8 +23,9 @@ export default class Cloth extends React.Component {
     onLoad = () => {
 
         this.setState({ imgWidth: document.getElementById('cloth-img').clientWidth })
-
         window.addEventListener('resize', this.updateOffset);
+
+        this.updateOffset();
 
     }
 

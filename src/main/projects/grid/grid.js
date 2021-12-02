@@ -35,6 +35,8 @@ export default class Grid extends React.Component {
 
         window.addEventListener('resize', this.updateOffset);
 
+        this.updateOffset();
+
     }
 
     updateOffset = () => {

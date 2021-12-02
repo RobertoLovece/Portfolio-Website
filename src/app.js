@@ -1,6 +1,6 @@
 // react
 import React from 'react';
-import {Clock} from 'three';
+import { Clock } from 'three';
 
 // gsap
 import { gsap, ScrollTrigger } from 'gsap/all';
@@ -64,6 +64,7 @@ export default class App extends React.Component {
 
         // OnLoad Event-Listener
         window.addEventListener('load', this.onLoad.bind(this));
+        this.onWindowResize();
 
     }
 
@@ -76,12 +77,16 @@ export default class App extends React.Component {
 
     // Handle page load
     onLoad() {
-
         this.skull = this.scene.children[4];
 
-        this.start();
         this.onWindowResize();
-        this.setState({ isLoading: false });
+        this.start();
+
+        const timer = setTimeout(() => {
+            document.body.style.overflow = 'overlay';
+            this.setState({ isLoading: false });
+        }, 3000);
+        return () => clearTimeout(timer);
     }
 
     //
@@ -120,13 +125,19 @@ export default class App extends React.Component {
 
     // React component render
     render() {
-        return (
-            <>
 
+        return (
+
+            <>
                 <div className='canvas'
                     ref={(mount) => { this.mount = mount }}
                 />
 
+                {this.state.isLoading === true ? (
+                    <div className='loader'></div>
+                ) : (
+                    null
+                )}
 
                 <div className='main'>
                     <Main
@@ -135,11 +146,13 @@ export default class App extends React.Component {
                         atmosphere={this.atmosphere}
                         scene={this.scene}
                         bloomPass={this.bloomPass}
-                        skull = {this.skull}
+                        skull={this.skull}
                     />
                 </div>
 
             </>
+
+
 
         )
     }

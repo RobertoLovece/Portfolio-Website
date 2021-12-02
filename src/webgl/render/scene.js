@@ -1,11 +1,11 @@
-import {WebGLRenderer, Scene, PerspectiveCamera, Color} from 'three';
+import {WebGL1Renderer, Scene, PerspectiveCamera, Color} from 'three';
 
 export function initScene(container) {
 
     var width = container.offsetWidth;
     var height = container.offsetHeight;
 
-    var renderer = new WebGLRenderer({ alpha: false, antialias: false });
+    var renderer = new WebGL1Renderer({ alpha: false, antialias: false });
     var scene = new Scene();
     var camera = new PerspectiveCamera(
         75,

@@ -51,7 +51,7 @@ export function HomePage(props) {
                     }
 
                 });
-            }, 200);
+            }, 300);
             return () => clearTimeout(timer);
 
             }

@@ -39,19 +39,22 @@ export function HomePage(props) {
             });
 
             var timeline = gsap.timeline();
-            timeline.fromTo('.homepage-name', { opacity: 0 }, { opacity: 1, duration: 5, ease: 'power1.out' });
-            timeline.fromTo('.homepage-name', { opacity: 1 }, {
-                opacity: 0,
-                scrollTrigger: {
-                    trigger: '.homepage-grid',
-                    start: 'center 50%',
-                    end: 'bottom 70%',
-                    scrub: true
-                }
-    
-            });
+            const timer = setTimeout(() => {
+                timeline.fromTo('.homepage-name', { opacity: 0 }, { opacity: 1, duration: 2, ease: 'power1.in' });
+                timeline.fromTo('.homepage-name', { opacity: 1 }, {
+                    opacity: 0,
+                    scrollTrigger: {
+                        trigger: '.homepage-grid',
+                        start: 'center 50%',
+                        end: 'bottom 70%',
+                        scrub: true
+                    }
 
-        }
+                });
+            }, 200);
+            return () => clearTimeout(timer);
+
+            }
     }, [props.isLoading]);
 
     return (

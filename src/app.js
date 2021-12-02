@@ -107,16 +107,20 @@ export default class App extends React.Component {
     onLoad() {
         console.log('loading')
 
-        const timer = setTimeout(() => {
+        let timer = setTimeout(() => {
 
             this.skull = this.scene.children[4];
             this.onWindowResize();
             this.start();
 
-            document.body.style.overflowY = 'auto';
-            document.body.style.overflowY = 'overlay';
-
             this.setState({ isLoading: false });
+
+            timer = setTimeout(() => {
+
+                document.body.style.overflowY = 'auto';
+                document.body.style.overflowY = 'overlay';
+            }, 2300);
+            return () => clearTimeout(timer);
         }, 1000);
         return () => clearTimeout(timer);
     }
@@ -166,9 +170,9 @@ export default class App extends React.Component {
                 />
 
                 {this.state.isLoading === true ? (
-                    <Loader/>
+                    <Loader />
                 ) : (
-                    <div/>
+                    <div />
                 )}
 
                 <div className='main'>

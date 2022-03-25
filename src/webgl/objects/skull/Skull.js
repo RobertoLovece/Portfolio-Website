@@ -1,10 +1,10 @@
-import * as THREE from 'three';
+import { Group, RawShaderMaterial, Mesh } from 'three';
 import MathEx from 'js-util/MathEx';
 
 import vs from '../shader/Skull.vs';
 import fs from '../shader/Skull.fs';
 
-export default class Skull extends THREE.Group {
+export default class Skull extends Group {
 	constructor(geometry1, geometry2) {
 		// Create Object3D
 		super();
@@ -12,7 +12,7 @@ export default class Skull extends THREE.Group {
 		this.name = 'skull';
 
 		// Define Material
-		this.material = new THREE.RawShaderMaterial({
+		this.material = new RawShaderMaterial({
 			uniforms: {
 				time: {
 					type: 'f',
@@ -31,8 +31,8 @@ export default class Skull extends THREE.Group {
 			fragmentShader: fs,
 		});
 
-		this.head = new THREE.Mesh(geometry1, this.material);
-		this.jaw = new THREE.Mesh(geometry2, this.material);
+		this.head = new Mesh(geometry1, this.material);
+		this.jaw = new Mesh(geometry2, this.material);
 
 		// this.rotation.set(
 		// 	MathEx.radians(0),

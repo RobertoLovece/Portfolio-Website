@@ -1,10 +1,10 @@
-import * as dat from 'three/examples/jsm/libs/dat.gui.module.js';
+// import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 
-import { BLOOMPARAMS, FILMPARAMS } from '../config.js';
+import { BLOOMPARAMS, FILMPARAMS } from '../utility/config.js';
 
 export function initGUI(bloomPass, filmPass) {
 
-    const gui = new dat.GUI();
+    const gui = new GUI();
     const bloomFolder = gui.addFolder('Bloom');
 
     bloomFolder.add(BLOOMPARAMS, "bloomStrength", 0, 2.0).onChange(function() {

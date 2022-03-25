@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import { Vector2 } from 'three';
 
 // composer
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
@@ -9,7 +9,7 @@ import { FilmPass } from 'three/examples/jsm/postprocessing/FilmPass.js';
 
 //
 
-import { BLOOMPARAMS, FILMPARAMS } from '../config.js';
+import { BLOOMPARAMS, FILMPARAMS } from '../utility/config.js';
 
 //
 
@@ -21,7 +21,7 @@ export function initPostProcessing(renderer, scene, camera) {
     // Passes
     var renderPass = new RenderPass(scene, camera);
     // resolution, strength, radius, threshold
-    var bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+    var bloomPass = new UnrealBloomPass(new Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
     var smaaPass = new SMAAPass(window.innerWidth * renderer.getPixelRatio(), window.innerHeight * renderer.getPixelRatio());
     // noiseIntensity, scanlinesIntensity, scanlinesCount, grayscale
     var filmPass = new FilmPass(

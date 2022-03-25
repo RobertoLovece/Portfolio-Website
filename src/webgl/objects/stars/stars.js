@@ -1,20 +1,20 @@
-import * as THREE from 'three';
+import { TextureLoader, Points, BufferGeometry, PointsMaterial, BufferAttribute } from 'three';
 import Cross from './texture/cross.png';
 
 //
 
-const loader = new THREE.TextureLoader();
+const loader = new TextureLoader();
 const cross = loader.load(Cross);
 
 //
 
-export default class Stars extends THREE.Points {
+export default class Stars extends Points {
     constructor(starNumber) {
 
         super();
 
-        this.geometry = new THREE.BufferGeometry();
-        this.material = new THREE.PointsMaterial({
+        this.geometry = new BufferGeometry();
+        this.material = new PointsMaterial({
             size: 0.008,
             map: cross,
             transparent: true,
@@ -58,8 +58,8 @@ export default class Stars extends THREE.Points {
 
         }
 
-        this.geometry.setAttribute('position', new THREE.BufferAttribute(position, 3));
-        this.geometry.setAttribute('size', new THREE.BufferAttribute(rands, 1));
+        this.geometry.setAttribute('position', new BufferAttribute(position, 3));
+        this.geometry.setAttribute('size', new BufferAttribute(rands, 1));
 
         this.scale.set(1.0, 1.0, 1.0)
 

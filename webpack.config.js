@@ -1,5 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackBundleAnalyzer = require('webpack-bundle-analyzer');
+const CompressionPlugin = require('compression-webpack-plugin');
+
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const { extendDefaultPlugins } = require("svgo");
 
 module.exports = function (_env, argv) {
 
@@ -21,11 +26,13 @@ module.exports = function (_env, argv) {
 		plugins: [
 			new HtmlWebpackPlugin({
 				template: './index.html',
-				favicon: './src/utility/icon/favicon.png',
+				favicon: './src/assets/icon/favicon.png',
 				inject: true,
 				chunks: ['index'],
 				filename: 'index.html'
 			}),
+			new WebpackBundleAnalyzer.BundleAnalyzerPlugin(),
+			new CompressionPlugin(),
 		],
 
 		devtool: isDevelopment && 'inline-source-map',
@@ -33,6 +40,16 @@ module.exports = function (_env, argv) {
 			open: true,
 			static: './dist',
 			port: 8080,
+		},
+
+		// reduce bundle size
+		// imports are in the path
+		// had to configure the orbit controlls plugin as well.
+		resolve: {
+			alias: {
+				// Forward all three imports to our exports file
+				three$: path.resolve('./src/webgl/utility/three-exports.js'),
+			},
 		},
 
 		module: {
@@ -52,10 +69,6 @@ module.exports = function (_env, argv) {
 					]
 				},
 				{
-					test: /\.(png|jpg|jpeg|gif)$/i,
-					type: 'asset/resource',
-				},
-				{
 					test: /\.(glsl|vs|fs|vert|frag)$/,
 					exclude: /node_modules/,
 					use: [
@@ -70,14 +83,64 @@ module.exports = function (_env, argv) {
 				{
 					test: /\.(jsx|js)$/,
 					exclude: /node_modules/,
-					use: {
-						loader: 'babel-loader',
-					}
+					loader: 'babel-loader',
+					options: {
+						plugins: [
+							[
+								'import',
+								{ libraryName: 'antd', style: true },
+								'antd',
+							]
+						],
+					},
 				},
 				{
 					test: /\.obj$/,
 					loader: 'url-loader',
 				},
+				{
+					test: /\.(png|jpg|jpeg|gif)$/i,
+					type: 'asset/resource',
+				},
+
+			],
+		},
+
+		optimization: {
+			minimizer: [
+				"...",
+				new ImageMinimizerPlugin({
+					minimizer: {
+						implementation: ImageMinimizerPlugin.imageminMinify,
+						options: {
+							// Lossless optimization with custom option
+							// Feel free to experiment with options for better result for you
+							plugins: [
+								["gifsicle", { interlaced: true }],
+								["jpegtran", { progressive: true }],
+								["optipng", { optimizationLevel: 5 }],
+								// Svgo configuration here https://github.com/svg/svgo#configuration
+								[
+									"svgo",
+									{
+										plugins: extendDefaultPlugins([
+											{
+												name: "removeViewBox",
+												active: false,
+											},
+											{
+												name: "addAttributesToSVGElement",
+												params: {
+													attributes: [{ xmlns: "http://www.w3.org/2000/svg" }],
+												},
+											},
+										]),
+									},
+								],
+							],
+						},
+					},
+				}),
 			],
 		},
 	}

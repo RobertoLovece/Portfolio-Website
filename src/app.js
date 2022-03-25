@@ -18,7 +18,7 @@ import { initGUI } from './webgl/gui/GUI.js';
 
 // css / sass
 import './app.sass';
-import './utility/styling/scrollbar.sass';
+import './assets/styling/scrollbar.sass';
 
 let clock = new Clock();
 
@@ -148,6 +148,7 @@ export default class App extends React.Component {
 
         var damp = 0.008;
         this.stars.rotation.y += -.1 * damp;
+
 
         this.renderScene(delta)
         this.frameId = window.requestAnimationFrame(this.animate)

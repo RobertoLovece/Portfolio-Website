@@ -1,4 +1,4 @@
-import {WebGL1Renderer, Scene, PerspectiveCamera, Color} from 'three';
+import { WebGL1Renderer, Scene, PerspectiveCamera, Color } from 'three';
 
 export function initScene(container) {
 

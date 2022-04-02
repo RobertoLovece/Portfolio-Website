@@ -5,11 +5,12 @@
   "private": true,
   "scripts": {
     "start": "webpack serve --open",
+    "prodstart": "webpack serve --open --mode=production",
     "build": "webpack",
     "prod": "webpack --mode=production",
     "deploy": "gh-pages -d dist",
-    "prodanalyze": "webpack --profile --mode=production --json > stats.json",
-    "devanalyze": "webpack --profile --json > stats.json"
+    "prodanalyze": "webpack serve --open --profile --analyze --mode=production --json > stats.json",
+    "devanalyze": "webpack serve --open --profile --analyze --json > stats.json"
   },
   "keywords": [],
   "author": "",

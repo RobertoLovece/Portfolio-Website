@@ -7,7 +7,7 @@ import { gsap, ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
 
 // react components
-import { Loader } from './main/loader.js';
+import { Loader } from './main/loader/loader.js';
 import { Main } from './main/main.js';
 
 // WebGL 

@@ -13,7 +13,7 @@ import Stars from './stars/stars.js'
 //
 
 import SkullModel from './skull/assets/SkullHead.obj'
-import NoiseTexture from './skull/assets/noise.png'
+import NoiseTexture from './skull/assets/noise_64.png'
 
 //
 
